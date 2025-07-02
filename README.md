@@ -7,15 +7,16 @@ _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
 ## 📚 Table of Contents
 
 1. [🔍 Introduction](#-introduction)  
-2. [🏗️ AJAX System Overview & Integration Limitations](#-ajax-system-overview--integration-limitations)  
-3. [🎮 Controlling AJAX with a SpaceControl Remote + Wi-Fi Relay](#-controlling-ajax-with-a-spacecontrol-remote--wifi-relay)  
-4. [🏠 Integrating with Home Assistant & Alarmo](#-integrating-with-home-assistant--alarmo)  
-5. [🖼️ Creating UI Cards & Status Sync](#-creating-ui-cards--status-sync)  
-6. [🎥 Live Demo – AJAX + Home Assistant in Action](#-live-demo--ajax--home-assistant-in-action)  
-7. [🧠 Conclusions & Thoughts](#-conclusions--thoughts)  
-8. [🪪 License](#-license)  
-9. [👨‍💻 Author and Inspiration](#-author-and-inspiration)  
-10. [🔗 Related Projects & Resources](#-related-projects--resources)
+2. [🧰 Requirements](#-requirements)
+3. [🏗️ AJAX System Overview & Integration Limitations](#-ajax-system-overview--integration-limitations)  
+4. [🎮 Controlling AJAX with a SpaceControl Remote + Wi-Fi Relay](#-controlling-ajax-with-a-spacecontrol-remote--wifi-relay)  
+5. [🏠 Integrating with Home Assistant & Alarmo](#-integrating-with-home-assistant--alarmo)  
+6. [🖼️ Creating UI Cards & Status Sync](#-creating-ui-cards--status-sync)  
+7. [🎥 Live Demo – AJAX + Home Assistant in Action](#-live-demo--ajax--home-assistant-in-action)  
+8. [🧠 Conclusions & Thoughts](#-conclusions--thoughts)  
+9. [🪪 License](#-license)  
+10. [👨‍💻 Author and Inspiration](#-author-and-inspiration)  
+11. [🔗 Related Projects & Resources](#-related-projects--resources)
 
 ---
 
