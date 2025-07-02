@@ -17,7 +17,7 @@ _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
 10. 🔗 Related Projects & Resources
 
 
-🔍 Introduction
+##🔍 Introduction
 
 First I would like to mention and give my gratitude to an author, IoT & Smart Home professional, who gave us an idea for such a project! [Carlos Cordero](https://carloscordero.com/) - [youtube blogger](https://www.youtube.com/watch?v=ot_ndKUsFXk), CTO of [BKOOL](https://www.linkedin.com/company/bkool/), and tech wiard from Spain. His Github - [Link](https://github.com/ccorderor)
 
@@ -54,7 +54,7 @@ No reverse engineering. No unreliable cloud hacks. Just clever wiring, good auto
 
 ---
 
-🏗️ AJAX System Overview & Integration Limitations
+##🏗️ AJAX System Overview & Integration Limitations
 The AJAX system is built as a closed, certified Grade 2 security solution. It’s designed to be tamper-proof, interference-resistant, and independent from DIY environments — for good reason: it’s used in banks, businesses, and homes that need real protection.
 
 Here’s what you need to understand before integrating:
@@ -82,13 +82,13 @@ In the other article, I explain how we listen to SIA events from the AJAX Hub to
 Here’s the architecture we’re building:
 
 ```text
-[Home Assistant]  <--->  [ESP-based Wi-Fi Relay]
-                              |
-                              └──> [AJAX SpaceControl Key Fob]
-                                         ↓
-                                [AJAX Hub ←→ Cloud]
-                                         ↓
-                          [Monitoring Center (optional)]
+[Home Assistant]  <--->  [4ch Smart Relay]
+     ^                         | - direct wiring
+     |                         └──> [AJAX SpaceControl Key Fob]
+     |                                    ↓ - ajax radio interface
+     |                           [AJAX Hub ←→ AJAX App]
+     |                                    ↓ -SIA
+     --------------------    [Monitoring Center (HA )]
 ```
 
 This preserves AJAX’s internal integrity — no warranty voiding, no breaking its security guarantees — while giving you just enough control to smarten it up and control from single(HA) interface.
@@ -103,7 +103,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 🧠 Author
+## 🧠 Author and Insipiration
 
 Created by [Alexei](https://github.com/AlexeiakaTechnik) — field integrator, systems tinkerer, and smart home architect in the making.
+Inspired by amazing ideas of [Carlos Cordero](https://carloscordero.com/)
 
