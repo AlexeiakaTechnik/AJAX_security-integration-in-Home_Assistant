@@ -33,13 +33,15 @@ The AJAX system is built as a certified Grade 2 alarm platform, designed to be t
 - Third-party systems through official integration tools like AJAX Translator and selected partner APIs
 
 However, for platforms like Home Assistant, AJAX still has no native integration — and likely won’t — probably because such public APIs/token-based security is a big no-no for certain security certifications.  
-That’s where this guide steps in — showing how to safely bridge the gap with a hardware relay and smart logic.
+That’s where this guide steps in — showing how to safely bridge the gap with a hardware relay and AJAX's Alarm logic.
 
 This guide shows how to bridge AJAX with Home Assistant, combining the power and reliability of a certified security system with the intelligence and flexibility of smart home automation. You’ll learn how to:
 
 - Control AJAX modes (arm, disarm, night, panic) via a simple smart relay hack  
 - Build a synced Home Assistant dashboard with real alarm zones, triggers, and alerts  
 - **(Bonus)** Use AJAX sensor states (motion, panic, etc.) in automations — covered in a companion article
+
+No reverse engineering. No unreliable cloud hacks. Just clever wiring, good automation logic, and a field-tested setup that works.
 
 > 📌 This is a real deployment. Every screenshot, wiring diagram, and automation here was used in an actual smart home with AJAX as the primary security system.
 
@@ -59,7 +61,7 @@ This guide shows how to bridge AJAX with Home Assistant, combining the power and
 
 ## 🏗️ AJAX System Overview & Integration Limitations
 
-The AJAX system is built as a closed, certified Grade 2 security solution. It’s designed to be tamper-proof, interference-resistant, and independent from DIY environments — for good reason: it’s used in banks, businesses, and homes that need real protection.
+The AJAX system is built as a closed, certified Grade 2 security solution. It’s designed to be tamper-proof, interference-resistant, and independent from DIY environments — for good reason: it’s used in banks, businesses, and homes/locations that need _secured_ protection.
 
 Here’s what you need to understand before integrating:
 
@@ -76,9 +78,8 @@ In particular, AJAX can talk to monitoring centers via the SIA protocol (for ala
 
 We use this to our advantage:
 
-- In **this repo**, we simulate button presses using a relay directly wired to the AJAX SpaceControl key fob. This lets Home Assistant arm/disarm AJAX — safely and reliably.  
-- In the **other article**, I explain how we listen to SIA events from the AJAX Hub to react to real events and “hijack” them for Home Assistant automations.  
-  👉 Be sure to [check it out](https://github.com/AlexeiakaTechnik/Use-Ajax-Security-alarm-sensors-as-a-Automation-Triggers-in-Home-Assistant)!
+- In this guide, we simulate button presses using a relay directly wired to the [AJAX SpaceControl key fob](https://ajax.systems/products/ajaxspacecontrol/). This lets Home Assistant arm/disarm AJAX — safely and reliably.  
+- In the **other article**, I explain how we listen to SIA events from the AJAX Hub to react to real events and “hijack” them for Home Assistant automations. Be sure to [check it out](https://github.com/AlexeiakaTechnik/Use-Ajax-Security-alarm-sensors-as-a-Automation-Triggers-in-Home-Assistant)!
 
 
 ---
@@ -91,6 +92,20 @@ This chapter explains how to *simulate button presses on the AJAX SpaceControl k
 - Disarm
 - Night Mode
 - Panic Alarm
+
+### 🗺️ How It All Connects
+Here’s the architecture we’re building:
+
+[Home Assistant]  <--->  [4ch Smart Relay]
+     ^                         | - direct wiring
+     |                         └──> [AJAX SpaceControl Key Fob]
+     |                                    ↓ - ajax radio interface
+     |                           [AJAX Hub ←→ AJAX App]
+     |                                    ↓ -SIA
+     --------------------    [Monitoring Center (HA )]
+
+
+This preserves AJAX’s internal integrity — no warranty voiding, no breaking its security guarantees — while giving you just enough control to smarten it up and control from single(HA) interface.
 
 ### 🧱 Hardware Setup Overview
 
