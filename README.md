@@ -8,7 +8,7 @@ _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
 
 1. [🔍 Introduction](#-introduction)  
 2. [🧰 Requirements](#-requirements)
-3. [🏗️ AJAX System Overview & Integration Limitations](#-ajax-system-overview--integration-limitations)  
+3. [🏗️ AJAX System Overview & Integration Limitations](#-ajax-system-overview--&--integration-limitations)
 4. [🎮 Controlling AJAX with a SpaceControl Remote + Wi-Fi Relay](#-controlling-ajax-with-a-spacecontrol-remote--wifi-relay)  
 5. [🏠 Integrating with Home Assistant & Alarmo](#-integrating-with-home-assistant--alarmo)  
 6. [🖼️ Creating UI Cards & Status Sync](#-creating-ui-cards--status-sync)  
