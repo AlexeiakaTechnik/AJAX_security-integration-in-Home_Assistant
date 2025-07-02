@@ -8,7 +8,7 @@ _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
 
 1. [🔍 Introduction](#-introduction)  
 2. [🧰 Requirements](#-requirements)
-3. [🏗️ AJAX System Overview & Integration Limitations](#-ajax-system-overview-&-integration-limitations)
+3. [🏗️ AJAX System Overview & Integration Limitations](#-ajax-system-overview-and-integration-limitations)
 4. [🎮 Controlling AJAX with a SpaceControl Remote + Wi-Fi Relay](#-controlling-ajax-with-a-spacecontrol-remote-+-wifi-relay)
 5. [🏠 Integrating with Home Assistant & Alarmo](#-integrating-with-home-assistant-&-alarmo)  
 6. [🖼️ Creating UI Cards & Status Sync](#-creating-ui-cards--status-sync)  
@@ -57,7 +57,7 @@ This guide shows how to bridge AJAX with Home Assistant, combining the power and
 
 ---
 
-## 🏗️ AJAX System Overview & Integration Limitations
+## 🏗️ AJAX System Overview and Integration Limitations
 
 The AJAX system is built as a closed, certified Grade 2 security solution. It’s designed to be tamper-proof, interference-resistant, and independent from DIY environments — for good reason: it’s used in banks, businesses, and homes that need real protection.
 
