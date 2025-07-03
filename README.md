@@ -96,7 +96,7 @@ This chapter explains how to *simulate button presses on the AJAX SpaceControl k
 ### 🗺️ How It All Connects
 Here’s the architecture we’re building:
 
-[AJAX Schema](https://github.com/user-attachments/assets/27fada47-c739-495f-80cc-1e3bb44336ae)
+![AJAX Schema crop](https://github.com/user-attachments/assets/b6b711b8-adb4-4136-bf49-5b7193217e6c)
 
 
 This preserves AJAX’s internal integrity — no warranty voiding, no breaking its security guarantees — while giving you just enough control to smarten it up and control from single(HA) interface.
