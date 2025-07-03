@@ -1,4 +1,4 @@
-
+*[Insert front photo here - maybe AJAX hub and HA interface..]* 
 # 🛡️ AJAX Security System Integration in Home Assistant  
 _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
 
@@ -96,13 +96,7 @@ This chapter explains how to *simulate button presses on the AJAX SpaceControl k
 ### 🗺️ How It All Connects
 Here’s the architecture we’re building:
 
-[Home Assistant]  <--->  [4ch Smart Relay]
-     ^                         | - direct wiring
-     |                         └──> [AJAX SpaceControl Key Fob]
-     |                                    ↓ - ajax radio interface
-     |                           [AJAX Hub ←→ AJAX App]
-     |                                    ↓ -SIA
-     --------------------    [Monitoring Center (HA )]
+[AJAX Schema](https://github.com/user-attachments/assets/27fada47-c739-495f-80cc-1e3bb44336ae)
 
 
 This preserves AJAX’s internal integrity — no warranty voiding, no breaking its security guarantees — while giving you just enough control to smarten it up and control from single(HA) interface.
