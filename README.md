@@ -1,4 +1,5 @@
-![image](https://github.com/user-attachments/assets/79509f4e-1e04-4407-9fe6-ca07d3f5eeaf)
+![image](https://github.com/user-attachments/assets/80a4172b-df12-4e60-a5d7-28ed11b5f64c)
+
 
 
 # 🛡️ AJAX Security System Integration in Home Assistant  
@@ -163,7 +164,14 @@ It's actually fairly easy to buy very cheap esp32 development board and configur
 
 ---
 
-## ⚙️ AJAX System Devices, Groups and SIA Monitoring Station Setup
+## ⚙️ AJAX System - Devices, Groups and SIA Monitoring Station Setup
+
+Whether you have installed AJAX system yourself or used security company services - there are important moments in configuring a few things in the **AJAX APP** ([Android](https://play.google.com/store/apps/details?id=com.ajaxsystems&pcampaignid=web_share), [Apple](https://apps.apple.com/us/app/ajax-security-system/id1063166247)). Better yet - use AJAX PRO([Android](https://play.google.com/store/apps/details?id=com.ajaxsystems.pro&pcampaignid=web_share), [Apple](https://apps.apple.com/us/app/ajax-pro-tool-for-engineers/id1249276895)) and make yourself a Private Installer in your native User AJAX APP(Hub settings -> Installers/Companies -> Invite -> introduce email of account you have registered within AJAX PRO APP). Be sure to mention it to your installer or whoever provides warranty/support for AJAX system to avoid any issues.
+
+Important things to consider in the AJAX APP are:
+
+- If you want to get readings of motion detection(or door/window triggers) in your configured areas _without_ setting alarm to Armed/Night mode, for example for quick dashboard glance in HA, as I have in my setup, you want to configure all your [MotionProtect](https://ajax.systems/products/motionprotect/) and [DoorProtect](https://ajax.systems/products/doorprotect/) devices to be **Always Active (24hrs)**. Do not worry - this will not drain your batterry considerably faster. I have used this setup for two years now, after several years in default mode and have not noticed any additional battery drain. To do this - go to device list, click on your devices one by one, enter device setting(cog) and set Always active slider to enabled.
+- SIA Integration in Home Assistant 
 
 ---
 
