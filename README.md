@@ -35,8 +35,7 @@ The AJAX system is built as a certified Grade 2 alarm platform, designed to be t
 - Hardware relays and smart switches via their own devices (e.g., WallSwitch, Relay)  
 - Third-party systems through official integration tools like AJAX Translator and selected partner APIs
 
-However, for platforms like Home Assistant, AJAX still has no native integration — and likely won’t — probably because such public APIs/token-based security is a big no-no for certain security certifications.  
-That’s where this guide steps in — showing how to safely bridge the gap with a hardware relay and AJAX's Alarm logic.
+However, for platforms like Home Assistant, AJAX still has no native integration — and likely won’t — probably because such public APIs/token-based security is a big no-no for certain security certifications and industry requirements. That’s where this guide steps in — showing how to safely bridge the gap with a hardware relay and AJAX's Alarm logic.
 
 This guide shows how to bridge AJAX with Home Assistant, combining the power and reliability of a certified security system with the intelligence and flexibility of smart home automation. You’ll learn how to:
 
@@ -171,7 +170,24 @@ Whether you have installed AJAX system yourself or used security company service
 Important things to consider in the AJAX APP are:
 
 - If you want to get readings of motion detection(or door/window triggers) in your configured areas _without_ setting alarm to Armed/Night mode, for example for quick dashboard glance in HA, as I have in my setup, you want to configure all your [MotionProtect](https://ajax.systems/products/motionprotect/) and [DoorProtect](https://ajax.systems/products/doorprotect/) devices to be **Always Active (24hrs)**. Do not worry - this will not drain your batterry considerably faster. I have used this setup for two years now, after several years in default mode and have not noticed any additional battery drain. To do this - go to device list, click on your devices one by one, enter device setting(cog) and set Always active slider to enabled.
-- SIA Integration in Home Assistant 
+
+- [SIA Integration in Home Assistant](https://www.home-assistant.io/integrations/sia/) will recieve events from AJAX's configured **Groups of devices**, not from _each and every device separately_. Important note here - different generations of AJAX Hubs have different group number limitations(sales booster of course). My Hub - [Hub (2G) Jeweller](https://ajax.systems/products/specs/hub/) - supports up to 9 groups as all Non-Plus models. If you want 25 Groups you have to buy Hub Plus/Hub 2 Plus. To set up Security Groups got to Control tab in APP -> Settings(cog) -> in Space settings select Groups -> + Add Group -> introduce Name and add devices in the Group. As I only have 9 group limit and 12+ devices I had configured one group to include MotionProtect and DoorProtect device from the same room/area.
+![image](https://github.com/user-attachments/assets/a4ef4f86-ce33-4ff9-9e1e-41a08409e35b)
+
+- And finally - you should configure your AJAX Hub to send SIA Events to your HA instance. To do this go to Device tab in APP -> your Hub -> Settings(cog) -> Security companies -> CMS CONNECTION Monitoring station: 
+  * Protocol - SIA DC-09 (SIA-DCS), 
+  * ALARM CHANNEL - Ethernet(unless your server is remote and you have configured network to get data from your Hub's location via Cellular), 
+  * PRIMARY IP ADDRESS - *Your HA IP* and *Use some free Port*(you also will use this port in HA SIA Integration when adding entry), 
+  * SECONDARY IP ADDRESS - I have used my HA servers Wi-Fi adapters IP for redundancy, 
+  * Monitoring station ping interval - 1 min works for me, 
+  * Connect on demand - Disabled works for me, 
+  * Object number - pick any name, but be sure to write it down, it will be useful while tracing SIA Events in HA Event bus, 
+  * Encryption - I did not configure it as my network is secured, 
+  * Send coordinates - Disable, 
+  * Alarm restoration on ARC - Send restoration code > When disarmed / Send panic (hold-up) device restoration event > Enabled
+
+This should be enough to get AJAX System ready for uasge with HA.
+
 
 ---
 
