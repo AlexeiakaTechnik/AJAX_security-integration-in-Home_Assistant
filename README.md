@@ -1,4 +1,5 @@
 *[Insert front photo here - maybe AJAX hub and HA interface..]* 
+
 # 🛡️ AJAX Security System Integration in Home Assistant  
 _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
 
@@ -61,7 +62,12 @@ No reverse engineering. No unreliable cloud hacks. Just clever wiring, good auto
 
 ## 🏗️ AJAX System Overview & Integration Limitations
 
+📸 *[Insert picture of AJAX Ecosystem protection]* 
+
 The AJAX system is built as a closed, certified Grade 2 security solution. It’s designed to be tamper-proof, interference-resistant, and independent from DIY environments — for good reason: it’s used in banks, businesses, and homes/locations that need _secured_ protection.
+
+![image](https://github.com/user-attachments/assets/b9580717-a260-4d85-85b2-c5b069a0ae34)
+
 
 Here’s what you need to understand before integrating:
 
@@ -93,7 +99,11 @@ This chapter explains how to *simulate button presses on the AJAX SpaceControl k
 - Night Mode
 - Panic Alarm
 
+![image](https://github.com/user-attachments/assets/55497e3d-6a38-4d6a-a206-655ed49c5041)
+
+
 ### 🗺️ How It All Connects
+
 Here’s the architecture we’re building:
 
 ![AJAX Schema crop](https://github.com/user-attachments/assets/b6b711b8-adb4-4136-bf49-5b7193217e6c)
@@ -103,12 +113,20 @@ This preserves AJAX’s internal integrity — no warranty voiding, no breaking 
 
 ### 🧱 Hardware Setup Overview
 
+Basically:
 - You will need a **4-channel smart relay** with dry contacts.
 - Each relay output is wired to one of the four buttons on the AJAX SpaceControl key fob.
 - When triggered via Home Assistant, the relay will short the contact, simulating a button press.
 
+The AJAX Space Control fob plastci enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
+📸 *[Insert picture of opened fob]* 
+
 📸 *[Insert wiring diagram and photos]*  
 📦 *[Link to recommended relay models and enclosure]*
+
+---
+
+## ⚙️ AJAX System Devices, Groups and SIA Monitoring Station Setup
 
 ---
 
