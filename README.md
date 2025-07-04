@@ -1,4 +1,5 @@
-*[Insert front photo here - maybe AJAX hub and HA interface..]* 
+![image](https://github.com/user-attachments/assets/79509f4e-1e04-4407-9fe6-ca07d3f5eeaf)
+
 
 # 🛡️ AJAX Security System Integration in Home Assistant  
 _Full DIY Control via Smart Relays, Alarmo, and UI Cards_
@@ -119,9 +120,22 @@ Basically:
 - When triggered via Home Assistant, the relay will short the contact, simulating a button press.
 
 The AJAX Space Control fob plastci enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
-📸 *[Insert picture of opened fob]* 
+
+
+![image](https://github.com/user-attachments/assets/287b096c-dbb2-4660-bda8-3c1dd8f90af3) ![image](https://github.com/user-attachments/assets/4d77be34-d1fd-41cd-8915-b87e4d94dc9e)
+
+
+
+There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and there ground direcltly to Smart Relay contacts or wire all ground contacts from relay to a single ground contact of Fob.
+
+
+ 📸 *[Insert picture of opened fob with contacts]* 
+
 
 📸 *[Insert wiring diagram and photos]*  
+![image](https://github.com/user-attachments/assets/ab0abd59-02a3-49da-aa4b-2c54ba74595a)
+
+
 📦 *[Link to recommended relay models and enclosure]*
 
 ---
