@@ -119,24 +119,47 @@ Basically:
 - Each relay output is wired to one of the four buttons on the AJAX SpaceControl key fob.
 - When triggered via Home Assistant, the relay will short the contact, simulating a button press.
 
-The AJAX Space Control fob plastci enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
+## **The AJAX Space Control fob** plastic enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
 
 
 ![image](https://github.com/user-attachments/assets/287b096c-dbb2-4660-bda8-3c1dd8f90af3) ![image](https://github.com/user-attachments/assets/4d77be34-d1fd-41cd-8915-b87e4d94dc9e)
 
 
-
-There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and there ground direcltly to Smart Relay contacts or wire all ground contacts from relay to a single ground contact of Fob.
-
-
- 📸 *[Insert picture of opened fob with contacts]* 
+There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
 
 
-📸 *[Insert wiring diagram and photos]*  
 ![image](https://github.com/user-attachments/assets/ab0abd59-02a3-49da-aa4b-2c54ba74595a)
 
+## **The Smart Relay with dry contacts** should have contacts designated for "Ithing mode" or "Momentary mode", "Dry Contact mode"
 
-📦 *[Link to recommended relay models and enclosure]*
+
+![image](https://github.com/user-attachments/assets/e02cc0bc-340d-4153-a34d-17d6ecdea1a3)
+
+
+Here is the clear wiring diagram:
+
+
+![image](https://github.com/user-attachments/assets/fdd75ece-c6ee-4499-aa08-73fab17b553c)
+  
+
+Regarding the device itself - you can use whatever relay you like, as long as it supports dry contact connection and Home Assistant integration of any kind.
+
+I have used this one from AliExpress:
+
+📦 *[[Link]](https://sl.aliexpress.ru/p?key=QJ9S3Vp)*
+
+But you can use others. Examples:
+
+- [SONOFF](https://sl.aliexpress.ru/p?key=Wc9S3gV) - ok brand, good value
+- [eWelink](https://sl.aliexpress.ru/p?key=jb9S3nc) - same as Sonoff, Actually eWelink is official Sonoff APP, don't know why they are presented as separate brands, but its very usual for Chinese market
+- Combine 2 [Aqara](https://www.aqara.com/eu/product/dual-relay-module-t2) relays - if you have their hub, but HA interation may be not as staightforward(may require integration through Apple homekit)
+- Or something like [Shelly](https://sl.aliexpress.ru/p?key=DX9S3Tf) - it's an overkill IMO but if you can spend a lot - options like this are extra reliable professional equipment with great integration capabilities
+
+
+## 💡 Bonus - ESP32 DIY Solution
+
+It's actually fairly easy to buy very cheap esp32 development board and configure/flash it with [ESPHome](https://esphome.io/index.html) or completely yourself from the ground up. Configure PINs to close the circuit momentarily and use it as your relay substitute with any additional functions you want, executed on the esp32 Chip itself if you want. Plus it's expandable! Be sure to check out my big article - [ESP32 DIY CO₂ Temperature & Humidity Sensors / Cameras for HA](https://github.com/AlexeiakaTechnik/Engineering-DIY-ESP32-Sensors-and-Cameras-for-Home-Assistant).
+
 
 ---
 
@@ -230,5 +253,5 @@ Inspired by the amazing work of [Carlos Cordero](https://carloscordero.com/) →
 
 - ✅ [Use AJAX Alarm Sensors as Automation Triggers](https://github.com/AlexeiakaTechnik/Use-Ajax-Security-alarm-sensors-as-a-Automation-Triggers-in-Home-Assistant)  
 - ✅ [Integrating Dahua Cameras with Home Assistant](https://github.com/AlexeiakaTechnik/Integrating-Dahua-Cameras-CCTV-System-in-Home-Assistant)  
-- ✅ [ESP32 DIY CO₂ & Presence Sensors for HA](https://github.com/AlexeiakaTechnik/Engineering-DIY-ESP32-Sensors-and-Cameras-for-Home-Assistant)  
+- ✅ [ESP32 DIY CO₂ Temperature & Humidity Sensors / Cameras for HA](https://github.com/AlexeiakaTechnik/Engineering-DIY-ESP32-Sensors-and-Cameras-for-Home-Assistant)  
 - 📄 [AJAX SIA Event Code Reference (Google Sheet)](https://docs.google.com/spreadsheets/d/1-N-RZVS8IiwM5zuw2u4gt8Bx_5xo_JOwuagHJgSJxUw/edit#gid=920971512)
