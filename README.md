@@ -125,7 +125,7 @@ Basically:
 ![image](https://github.com/user-attachments/assets/287b096c-dbb2-4660-bda8-3c1dd8f90af3) ![image](https://github.com/user-attachments/assets/4d77be34-d1fd-41cd-8915-b87e4d94dc9e)
 
 
-There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
+## There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
 
 
 ![image](https://github.com/user-attachments/assets/ab0abd59-02a3-49da-aa4b-2c54ba74595a)
@@ -136,24 +136,26 @@ There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the b
 ![image](https://github.com/user-attachments/assets/e02cc0bc-340d-4153-a34d-17d6ecdea1a3)
 
 
-Here is the clear wiring diagram:
+## Here is the clear wiring diagram:
 
 
 ![image](https://github.com/user-attachments/assets/fdd75ece-c6ee-4499-aa08-73fab17b553c)
   
 
-Regarding the device itself - you can use whatever relay you like, as long as it supports dry contact connection and Home Assistant integration of any kind.
+
+
+- Regarding the device itself - you can use whatever relay you like, as long as it supports dry contact connection and Home Assistant integration of any kind.
 
 I have used this one from AliExpress:
 
 📦 *[[Link]](https://sl.aliexpress.ru/p?key=QJ9S3Vp)*
 
-But you can use others. Examples:
+- But you can use others. Examples:
 
-- [SONOFF](https://sl.aliexpress.ru/p?key=Wc9S3gV) - ok brand, good value
-- [eWelink](https://sl.aliexpress.ru/p?key=jb9S3nc) - same as Sonoff, Actually eWelink is official Sonoff APP, don't know why they are presented as separate brands, but its very usual for Chinese market
-- Combine 2 [Aqara](https://www.aqara.com/eu/product/dual-relay-module-t2) relays - if you have their hub, but HA interation may be not as staightforward(may require integration through Apple homekit)
-- Or something like [Shelly](https://sl.aliexpress.ru/p?key=DX9S3Tf) - it's an overkill IMO but if you can spend a lot - options like this are extra reliable professional equipment with great integration capabilities
+  - [SONOFF](https://sl.aliexpress.ru/p?key=Wc9S3gV) - ok brand, good value
+  - [eWelink](https://sl.aliexpress.ru/p?key=jb9S3nc) - same as Sonoff, Actually eWelink is official Sonoff APP, don't know why they are presented as separate brands, but its very usual for Chinese market
+  - Combine 2 [Aqara](https://www.aqara.com/eu/product/dual-relay-module-t2) relays - if you have their hub, but HA interation may be not as staightforward(may require integration through Apple homekit)
+  - Or something like [Shelly](https://sl.aliexpress.ru/p?key=DX9S3Tf) - it's an overkill IMO but if you can spend a lot - options like this are extra reliable professional equipment with great integration capabilities
 
 
 ## 💡 Bonus - ESP32 DIY Solution
@@ -197,7 +199,7 @@ In this section, we configure **Home Assistant** to:
 
 - Trigger relays for each AJAX mode
 - Use **Alarmo** to create virtual alarm zones
-- Sync the state of Alarmo with AJAX to reflect true armed/disarmed status
+- Sync the state of HA's Alarmo with AJAX and vice versa to reflect true Armed/Disarmed status
 - Send notifications and alerts
 
 ### 🔧 Alarmo Configuration
