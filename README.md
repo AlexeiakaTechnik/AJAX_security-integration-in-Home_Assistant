@@ -270,12 +270,18 @@ You can configure Alarm Actions, Notifications in **Actions Tab** but I would wh
 
 Here is an example of ALARMO Action calling out shutting off house water valve in case Enviromental Alarm goes off:
 
-![image](https://github.com/user-attachments/assets/5edba3ae-5e93-4dd7-b8e9-e55771af7466)
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
 
+![image](https://github.com/user-attachments/assets/5edba3ae-5e93-4dd7-b8e9-e55771af7466)
 ![image](https://github.com/user-attachments/assets/98924831-6efd-4f63-b585-7a13373ff0b7)
 
+</details>
 
-📄 Example YAMLs for automation, triggers, and states will be included here.
+
+
+
+
 
 ### 🔧 Synchronization of Alarm states
 
