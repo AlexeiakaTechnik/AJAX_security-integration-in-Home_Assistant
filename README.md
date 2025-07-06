@@ -360,7 +360,8 @@ We will set up two Automations in HA to mirror AJAX(APP-Hub) state with Home Ass
 </details>
 
 
-There is an issue, relay works great but AJAX fob doesnt react 100% of the time to switch/relay being shorted. So automation should include some sort of mechanism to verify state change via SIA Integration state feedback. We must make sure that AJAX Alarm has indeed switched to desirable state. Through testing I have found that changing relay pulse duration(button press time, i.e. seconds it stays on after switching back to off - configured in TUYA/Smart Life APP) **does not** impact the success of AJAX fob actually sending command to AJAX Hub. However, switching relay _a few times(2-3 times)_ in a span of _~10_ seconds does the job - this will be included in Automation YAML config below.
+There is an issue, relay works great but AJAX fob doesnt react 100% of the time to switch/relay being shorted. So automation should include some sort of mechanism to verify state change via SIA Integration state feedback. We must make sure that AJAX Alarm has indeed switched to desirable state. Through testing I have found that changing relay pulse duration(button press time, i.e. seconds it stays on after switching back to off - configured in TUYA/Smart Life APP) **does not** impact the success of AJAX fob actually sending command to AJAX Hub. However, switching relay _a few times(2-3 times)_ in a span of _~10 seconds_ does the job - this will be included in Automation YAML config below.
+
 *Your relay/esp32 device may be different in how it interacts with fob buttons - so you will have to test it yourself and adjust Automation config accordingly
 
 - In HA we have **SIA Integration** with populaed devices/entities. We can use any of them to monitor AJAX Alarm state change, because Space Control fob swithces all devices(connected to this HUB) to Arm/Disarm/Night. So the entity will be in my case:
@@ -391,7 +392,7 @@ There is an issue, relay works great but AJAX fob doesnt react 100% of the time 
 - **Automation 1 - Sync Alarmo Zones from AJAX SIA Alarm State**
 
 <details>
-<summary>📸 YAML Config (Click to Expand)</summary>
+<summary>📝 YAML Config (Click to Expand)</summary>
 
 ```yaml
 
@@ -467,7 +468,7 @@ triggers:
       - alarm_control_panel.1st_level
     trigger: state
 conditions:
-  - condition: template
+  - condition: template ##This condition will check if both areas are the same state
     value_template: |
       {{
         states('alarm_control_panel.0_level') == states('alarm_control_panel.1st_level')
@@ -475,20 +476,20 @@ conditions:
 actions:
   - variables:
       target_state: "{{ states('alarm_control_panel.0_level') }}"
-  - choose:
+  - choose: ##We use choose operator to choose between 3 possible states - armed_away / disarmed / armed_night
       - conditions:
           - condition: template
             value_template: "{{ target_state == 'armed_away' }}"
         sequence:
           - repeat:
-              count: 3
+              count: 3 ##Lets repeat sequence 3 times to make sure AJAX Fob noticed button push and sent command to Hub
               sequence:
                 - target:
                     entity_id: switch.ajax_space_control_button_relay_switch_2
                   action: switch.turn_on
                   data: {}
                 - delay:
-                    seconds: 2
+                    seconds: 2 ##Lets put a delay for Armed Away - this may improve stability when working with multiple areas
                 - target:
                     entity_id: switch.ajax_space_control_button_relay_switch_2
                   action: switch.turn_off
@@ -498,15 +499,15 @@ actions:
                     is_state('alarm_control_panel.main_hall_pir_motion_sensor',
                     'armed_away') }}
                   timeout: "00:00:10"
-                  continue_on_timeout: true
+                  continue_on_timeout: true ##This section will verify via SIA Integration that AJAX Hub has indeed changed state to desirable armed_away
                 - condition: template
                   value_template: >
                     {{
                     is_state('alarm_control_panel.main_hall_pir_motion_sensor',
                     'armed_away') }}
-                - stop: AJAX switched successfully to Armed Away.
+                - stop: AJAX switched successfully to Armed Away. ##Stop operator will prevent sequence repeat if SIA Integration has noticed state change
                 - delay:
-                    seconds: 3
+                    seconds: 3 ##Additional delay to prevent quick button presses, prevent cascading failures, loops, Allow AJAX Hub to process and stabilize its state
       - conditions:
           - condition: template
             value_template: "{{ target_state == 'disarmed' }}"
@@ -574,6 +575,8 @@ mode: single
 ```
 
 </details>
+
+I have found this Automations to be quite reliable and stable as will be shown in **🎥 Live Demo** video.
 
 ---
 
