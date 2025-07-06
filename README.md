@@ -100,7 +100,12 @@ This chapter explains how to *simulate button presses on the AJAX SpaceControl k
 - Night Mode
 - Panic Alarm
 
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/55497e3d-6a38-4d6a-a206-655ed49c5041)
+
+</details>
 
 
 ### 🗺️ How It All Connects
@@ -121,17 +126,19 @@ Basically:
 
 ## **The AJAX Space Control fob** plastic enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
 
+<details>
+<summary>📸 Photos (Click to Expand)</summary>
 
 ![image](https://github.com/user-attachments/assets/287b096c-dbb2-4660-bda8-3c1dd8f90af3) ![image](https://github.com/user-attachments/assets/4d77be34-d1fd-41cd-8915-b87e4d94dc9e)
+
+</details>
 
 
 ## There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
 
-
 ![image](https://github.com/user-attachments/assets/ab0abd59-02a3-49da-aa4b-2c54ba74595a)
 
 ## **The Smart Relay with dry contacts** should have contacts designated for "Ithing mode" or "Momentary mode", "Dry Contact mode"
-
 
 ![image](https://github.com/user-attachments/assets/e02cc0bc-340d-4153-a34d-17d6ecdea1a3)
 
@@ -222,11 +229,24 @@ When adding config - set:
 
 These are screenshots from my SIA Device List after I renamed them and added lables, etc.:
 
+Example:
+
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/be81d636-2204-491b-be78-e3d7ecb0c249)
+
+</details>
+
 
 FYI, there will be Smoke / Moisture devices & entities added. This is how integration gets info from AJAX Hub, but they are useless as far as I know:
 
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/cd66d368-9632-4534-8e3c-d69244532428)
+
+</details>
 
 
 
@@ -247,26 +267,47 @@ Basically in ALARMO you should configure Areas or use default Alarmo area(these 
 
 Example of **General Tab**:
 
+Example:
+
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/0ab13f0f-fc8d-4469-a0a4-8d4539dd9fd3)
+
+</details>
+
 
 In **Sensors Tab** - you should add Sensors(ALARMO will include binary sensors mostly in the list).
 
 Example:
 
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/0a458221-2d15-4703-a73d-276020a1b452)
+
+</details>
 
 
 For each Sensor you should configure Area it is attached to, Device type, Enabled Modes. Additionally you can try and configure Groups, Additional settings, etc.
 For detailed documentation see [ALARMO Page on Github](https://github.com/nielsfaber/alarmo) or in HACS.
 
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/72999763-5b4b-4b85-85e9-a147437b647a)
 
+</details>
 
 You can configure Alarm Actions, Notifications in **Actions Tab** but I would wholeheartedly reccomend to use it only to call out your HA Automations. I did some configuration of Notfications, but ALARMO UI is not very well thought out for user experience.
 
-![image](https://github.com/user-attachments/assets/e0aa1b19-1916-4b9e-b74c-05e9f0694323)
+<details>
+<summary>📸 Screenshots (Click to Expand)</summary>
 
+![image](https://github.com/user-attachments/assets/e0aa1b19-1916-4b9e-b74c-05e9f0694323)
 ![image](https://github.com/user-attachments/assets/ae521752-8902-40dc-af06-0f1c8d2c1752)
+
+</details>
 
 Here is an example of ALARMO Action calling out shutting off house water valve in case Enviromental Alarm goes off:
 
