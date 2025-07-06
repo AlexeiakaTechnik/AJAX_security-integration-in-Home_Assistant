@@ -225,7 +225,7 @@ FYI, there will be Smoke / Moisture devices & entities added. This is how integr
 
 First, lets install ALARMO Custom Inegration. For this we will need HACS Community Store. Here is the link in case you don't have it installed:
 
-[![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs.svg)](https://my.home-assistant.io/redirect/hacs_integration/)
+[![HACS](https://img.shields.io/badge/HACS-Install%20Guide-blue?logo=home-assistant&style=flat-square)](https://hacs.xyz)
 
 And ALARMO Integration:
 
