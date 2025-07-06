@@ -351,6 +351,7 @@ We will set up two Automations in HA to mirror AJAX(APP-Hub) state with Home Ass
     * **NIGHT MODE** - _switch.ajax_space_control_button_relay_switch_3_
     * **PANIC BUTTON** - _switch.ajax_space_control_button_relay_switch_1_
 
+
     <details>
     <summary>📸 LocalTuya UI Screenshot (Click to Expand)</summary>
 
@@ -363,14 +364,14 @@ There is an issue, relay works great but AJAX fob doesnt react 100% of the time 
 
 - In HA we have **SIA Integration** with populaed devices/entities. We can use any of them to monitor AJAX Alarm state change, because Space Control fob swithces all devices(connected to this HUB) to Arm/Disarm/Night. So the entity will be in my case:
 
-    _alarm_control_panel.main_hall_pir_motion_sensor_ with states **Armed away, Disarmed, Armed night, Triggered, Arming, Disarming**
+    * _alarm_control_panel.main_hall_pir_motion_sensor_ with states **Armed away, Disarmed, Armed night, Triggered, Arming, Disarming**
 
 - In HA **ALARMO** I have 4 Areas configured:
 
-  - 0 Level - _alarm_control_panel.0_level_ - controls Sensors attached to **Level 0** of house, has **Armed away, Disarmed, Armed night, Triggered, Arming, Disarming** states
-  - 1 Level - _alarm_control_panel.1st_level_ - controls Sensors attached to **Level 1** of house, has **Armed away, Disarmed, Armed night, Triggered, Arming, Disarming** states
-  - Enviromental Alarm - alarm_control_panel.water_fire_power_hazard_alarms - controls only leak, fire/smoke Sensors, has **Armed away, Disarmed** and **Triggered** states - not applicable to this article but I wanted to mention it anyway
-  - Master Alarm - _alarm_control_panel.halaim_home_master_alarm_ - Controls other **3 Areas simultaneously**, has **Armed away, Disarmed**, **Triggered**, **Arming, Disarming** states - may be needed for UI Dashboard if you want one switch to secure the whole building with one alarm panel
+  * 0 Level - _alarm_control_panel.0_level_ - controls Sensors attached to **Level 0** of house, has **Armed away, Disarmed, Armed night, Triggered, Arming, Disarming** states
+  * 1 Level - _alarm_control_panel.1st_level_ - controls Sensors attached to **Level 1** of house, has **Armed away, Disarmed, Armed night, Triggered, Arming, Disarming** states
+  * Enviromental Alarm - alarm_control_panel.water_fire_power_hazard_alarms - controls only leak, fire/smoke Sensors, has **Armed away, Disarmed** and **Triggered** states - not applicable to this article but I wanted to mention it anyway
+  * Master Alarm - _alarm_control_panel.halaim_home_master_alarm_ - Controls other **3 Areas simultaneously**, has **Armed away, Disarmed**, **Triggered**, **Arming, Disarming** states - may be needed for UI Dashboard if you want one switch to secure the whole building with one alarm panel
 
 **Important note** - from HA and Alarmo side of things you can control Floors/Levels or Dedicated Enviromental Alarm separately, but from AJAX APP/Hub/fob point of view you can only control the whole house. You can add second, third AJAX Fob with their own Relay to your setup or connect a few Fobs to one ESP32 Board if you want multiple areas controlled separately. I have checked AJAX APP and you can attach all/different groups to a single Space Control fob.
 
