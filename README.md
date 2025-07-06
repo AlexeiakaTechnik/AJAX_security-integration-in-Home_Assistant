@@ -226,8 +226,6 @@ Install SIA Alarm Systems Official Inegration.
 
 [![Open this in Home Assistant](https://my.home-assistant.io/badges/integration.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=sia)
 
-![image](https://github.com/user-attachments/assets/5393f27d-6a29-4d84-93d8-42ba2bb70ebc)
-
 When adding config - set:
 
   *  **Port** as you have set port in AJAX APP, 
@@ -237,7 +235,12 @@ When adding config - set:
   *  **Ping Interval** - same as in AJAX APP,
   *  **Number of zones** is supposed to be equal to **Group number** set up in AJAX APP or Group number + 1(for adding HUB as a zone itself) - try both or add ones if you do not see all zones set up.
 
+<details>
+<summary>📸 Adding SIA Config Screenshot (Click to Expand)</summary>
 
+![image](https://github.com/user-attachments/assets/5393f27d-6a29-4d84-93d8-42ba2bb70ebc)
+
+</details>
 
 These are screenshots from my SIA Device List after I renamed them and added lables, etc.:
 
