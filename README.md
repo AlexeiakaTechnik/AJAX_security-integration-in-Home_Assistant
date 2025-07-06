@@ -401,7 +401,7 @@ description: >-
   Synchronizes Alarmo zones (Level 0 and Level 1) with AJAX system state
   received via SIA events. This is the *incoming* direction: AJAX state changes
   → HA updates.
-triggers:
+triggers: ##We use SIA Integration Device state change as a trigger
   - entity_id: alarm_control_panel.main_hall_pir_motion_sensor
     trigger: state
 conditions: []
@@ -411,14 +411,14 @@ actions:
   - choose:
       - conditions:
           - condition: template
-            value_template: "{{ ajax_state == 'armed_away' }}"
+            value_template: "{{ ajax_state == 'armed_away' }}" ##lets check if our variable state changed to armed_away
         sequence:
-          - action: alarm_control_panel.alarm_arm_away
+          - action: alarm_control_panel.alarm_arm_away ##and arm the alarm
             target:
               entity_id: alarm_control_panel.0_level
             data: {}
           - delay:
-              seconds: 2
+              seconds: 2  ##lets put a delay between area actions for Armed Away - this may improve stability when working with multiple areas
           - action: alarm_control_panel.alarm_arm_away
             target:
               entity_id: alarm_control_panel.1st_level
@@ -468,7 +468,7 @@ triggers:
       - alarm_control_panel.1st_level
     trigger: state
 conditions:
-  - condition: template ##This condition will check if both areas are the same state
+  - condition: template ##this condition will check if both areas are the same state
     value_template: |
       {{
         states('alarm_control_panel.0_level') == states('alarm_control_panel.1st_level')
@@ -476,30 +476,30 @@ conditions:
 actions:
   - variables:
       target_state: "{{ states('alarm_control_panel.0_level') }}"
-  - choose: ##We use choose operator to choose between 3 possible states - armed_away / disarmed / armed_night
+  - choose: ##we use choose operator to choose between 3 possible states - armed_away / disarmed / armed_night
       - conditions:
           - condition: template
             value_template: "{{ target_state == 'armed_away' }}"
         sequence:
           - repeat:
-              count: 3 ##Lets repeat sequence 3 times to make sure AJAX Fob noticed button push and sent command to Hub
+              count: 3 ##lets repeat sequence 3 times to make sure AJAX Fob noticed button push and sent command to Hub
               sequence:
                 - target:
                     entity_id: switch.ajax_space_control_button_relay_switch_2
                   action: switch.turn_on
                   data: {}
                 - delay:
-                    seconds: 2 ##Lets put a delay for Armed Away - this may improve stability when working with multiple areas
+                    seconds: 2  ##we already have Momentary/Itching mode Pulse duration configured in TUYA APP but lets add 2 second delayed Turn Off action anyway
                 - target:
                     entity_id: switch.ajax_space_control_button_relay_switch_2
                   action: switch.turn_off
                   data: {}
-                - wait_template: >
+                - wait_template: > ##this section will add 10 second timer to verify via SIA Integration that AJAX Hub has indeed changed state to desirable armed_away
                     {{
                     is_state('alarm_control_panel.main_hall_pir_motion_sensor',
                     'armed_away') }}
                   timeout: "00:00:10"
-                  continue_on_timeout: true ##This section will verify via SIA Integration that AJAX Hub has indeed changed state to desirable armed_away
+                  continue_on_timeout: true
                 - condition: template
                   value_template: >
                     {{
@@ -507,7 +507,7 @@ actions:
                     'armed_away') }}
                 - stop: AJAX switched successfully to Armed Away. ##Stop operator will prevent sequence repeat if SIA Integration has noticed state change
                 - delay:
-                    seconds: 3 ##Additional delay to prevent quick button presses, prevent cascading failures, loops, Allow AJAX Hub to process and stabilize its state
+                    seconds: 3 ##additional delay to prevent quick button presses, prevent cascading failures, loops, Allow AJAX Hub to process and stabilize its state
       - conditions:
           - condition: template
             value_template: "{{ target_state == 'disarmed' }}"
