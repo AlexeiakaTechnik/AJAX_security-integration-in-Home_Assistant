@@ -209,13 +209,22 @@ Install SIA Alarm Systems Official Inegration.
 
 ![image](https://github.com/user-attachments/assets/5393f27d-6a29-4d84-93d8-42ba2bb70ebc)
 
-When adding config - set **Port** as you have set port in AJAX APP, **Protocol** to TCP(unless you set it otherwise), **Account ID** to **Object number** as set in AJAX APP Monitoring station, **Encryption key** if you have set it uo in AJAX APP, **Ping Interval** - same as in AJAX APP, **Number of zones** is supposed to be equal to **Group number** set up in AJAX APP or Group number + 1(for adding HUB as a zone itself) - try both or add ones if you do not see all zones set up.
+When adding config - set:
 
-These are screenshots from my SIA Device List after I reamed them and added lables, etc.
+  *  **Port** as you have set port in AJAX APP, 
+  *  **Protocol** to TCP(unless you set it otherwise),
+  *  **Account ID** to **Object number** as set in AJAX APP Monitoring station,
+  *  **Encryption key** if you have set it uo in AJAX APP,
+  *  **Ping Interval** - same as in AJAX APP,
+  *  **Number of zones** is supposed to be equal to **Group number** set up in AJAX APP or Group number + 1(for adding HUB as a zone itself) - try both or add ones if you do not see all zones set up.
+
+
+
+These are screenshots from my SIA Device List after I renamed them and added lables, etc.:
 
 ![image](https://github.com/user-attachments/assets/be81d636-2204-491b-be78-e3d7ecb0c249)
 
-FYI, there will be Smoke / Moisture devices & entities added. This is how integration gets info from AJAX Hub, but they are useless as far as I know.
+FYI, there will be Smoke / Moisture devices & entities added. This is how integration gets info from AJAX Hub, but they are useless as far as I know:
 
 ![image](https://github.com/user-attachments/assets/cd66d368-9632-4534-8e3c-d69244532428)
 
@@ -232,9 +241,39 @@ And ALARMO Integration:
 [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fnielsfaber%2Falarmo)
 
 ALARMO Integration is unfortunatly only configured via UI, so the process is a bit tedious. Alarmo is intentionally designed to be UI-configured for most settings.
-There is a possible way to carefully edit .storage/alarmo JSON files manually, but I would not reccomend it as mistakes can lead to breaking your HA config. I have had a situation once when dirty edits in HA files led to me restoring HA Backup through it's console CLI.
+There is a possible way to carefully edit .storage/alarmo JSON files manually, but I would not reccomend it as mistakes can lead to breaking your HA config. I have had a situation once when dirty edits in HA files led to me restoring full HA Backup through it's console CLI.
 
-Basically in ALARMO you should configure Home 
+Basically in ALARMO you should configure Areas or use default Alarmo area(these are separate virtual alarm sets, I have 2 Levels/Floors as two families live in the house, and one Area for enviromental Alarms - like fire/water/electrical/etc.), configure Modes you will use(I have Armed Away and Armed Night configured for Security Alarms and only Armed Away for Enviromental Alarms). 
+
+Example of **General Tab**:
+
+![image](https://github.com/user-attachments/assets/0ab13f0f-fc8d-4469-a0a4-8d4539dd9fd3)
+
+In **Sensors Tab** - you should add Sensors(ALARMO will include binary sensors mostly in the list).
+
+Example:
+
+![image](https://github.com/user-attachments/assets/0a458221-2d15-4703-a73d-276020a1b452)
+
+
+For each Sensor you should configure Area it is attached to, Device type, Enabled Modes. Additionally you can try and configure Groups, Additional settings, etc.
+For detailed documentation see [ALARMO Page on Github](https://github.com/nielsfaber/alarmo) or in HACS.
+
+![image](https://github.com/user-attachments/assets/72999763-5b4b-4b85-85e9-a147437b647a)
+
+
+You can configure Alarm Actions, Notifications in **Actions Tab** but I would wholeheartedly reccomend to use it only to call out your HA Automations. I did some configuration of Notfications, but ALARMO UI is not very well thought out for user experience.
+
+![image](https://github.com/user-attachments/assets/e0aa1b19-1916-4b9e-b74c-05e9f0694323)
+
+![image](https://github.com/user-attachments/assets/ae521752-8902-40dc-af06-0f1c8d2c1752)
+
+Here is an example of ALARMO Action calling out shutting off house water valve in case Enviromental Alarm goes off:
+
+![image](https://github.com/user-attachments/assets/5edba3ae-5e93-4dd7-b8e9-e55771af7466)
+
+![image](https://github.com/user-attachments/assets/98924831-6efd-4f63-b585-7a13373ff0b7)
+
 
 📄 Example YAMLs for automation, triggers, and states will be included here.
 
