@@ -352,12 +352,13 @@ We will set up two Automations in HA to mirror AJAX(APP-Hub) state with Home Ass
     * **PANIC BUTTON** - _switch.ajax_space_control_button_relay_switch_1_
 
 
-    <details>
-    <summary>📸 LocalTuya UI Screenshot (Click to Expand)</summary>
+<details>
+<summary>📸 LocalTuya UI Screenshot (Click to Expand)</summary>
 
-    ![image](https://github.com/user-attachments/assets/3fed065d-5f69-434d-981f-3d61956a5762)
+![image](https://github.com/user-attachments/assets/3fed065d-5f69-434d-981f-3d61956a5762)
 
-    </details>
+</details>
+
 
 There is an issue, relay works great but AJAX fob doesnt react 100% of the time to switch/relay being shorted. So automation should include some sort of mechanism to verify state change via SIA Integration state feedback. We must make sure that AJAX Alarm has indeed switched to desirable state. Through testing I have found that changing relay pulse duration(button press time, i.e. seconds it stays on after switching back to off - configured in TUYA/Smart Life APP) **does not** impact the success of AJAX fob actually sending command to AJAX Hub. However, switching relay _a few times(2-3 times)_ in a span of _~10_ seconds does the job - this will be included in Automation YAML config below.
 *Your relay/esp32 device may be different in how it interacts with fob buttons - so you will have to test it yourself and adjust Automation config accordingly
@@ -383,9 +384,12 @@ There is an issue, relay works great but AJAX fob doesnt react 100% of the time 
   - Do nothing with Enviromental Alarms as it's basically a seperate system in ALARMO
   - Do nothing with Master Alarm in ALARMO as there is no need if we follow this logic
 
+
 **📄 Example YAMLs for Sync Automation:**
 
+
 - **Automation 1 - Sync Alarmo Zones from AJAX SIA Alarm State**
+
 <details>
 <summary>📸 YAML Config (Click to Expand)</summary>
 
@@ -444,9 +448,11 @@ mode: queued
 
 </details>
 
+
 - **Automation 2 - Control AJAX via Relay from Alarmo (Double Check with SIA feedback)**
+
 <details>
-<summary>📸 YAML Config (Click to Expand)</summary>
+<summary>📝 YAML Config (Click to Expand)</summary>
 
 ```yaml
 
