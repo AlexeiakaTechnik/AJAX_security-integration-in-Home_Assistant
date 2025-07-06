@@ -139,11 +139,21 @@ Basically:
 
 ## There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
 
+<details>
+<summary>📸 Wiring Photo (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/ab0abd59-02a3-49da-aa4b-2c54ba74595a)
+
+</details>
 
 ## **The Smart Relay with dry contacts** should have contacts designated for "Ithing mode" or "Momentary mode", "Dry Contact mode"
 
+<details>
+<summary>📸 Relay Dry Contacts Image (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/e02cc0bc-340d-4153-a34d-17d6ecdea1a3)
+
+</details>
 
 
 ## Here is the clear wiring diagram:
@@ -151,8 +161,6 @@ Basically:
 
 ![image](https://github.com/user-attachments/assets/fdd75ece-c6ee-4499-aa08-73fab17b553c)
   
-
-
 
 - Regarding the device itself - you can use whatever relay you like, as long as it supports dry contact connection and Home Assistant integration of any kind.
 
@@ -184,6 +192,7 @@ Important things to consider in the AJAX APP are:
 - If you want to get readings of motion detection(or door/window triggers) in your configured areas _without_ setting alarm to Armed/Night mode, for example for quick dashboard glance in HA, as I have in my setup, you want to configure all your [MotionProtect](https://ajax.systems/products/motionprotect/) and [DoorProtect](https://ajax.systems/products/doorprotect/) devices to be **Always Active (24hrs)**. Do not worry - this will not drain your batterry considerably faster. I have used this setup for two years now, after several years in default mode and have not noticed any additional battery drain. To do this - go to device list, click on your devices one by one, enter device setting(cog) and set Always active slider to enabled.
 
 - [SIA Integration in Home Assistant](https://www.home-assistant.io/integrations/sia/) will recieve events from AJAX's configured **Groups of devices**, not from _each and every device separately_. Important note here - different generations of AJAX Hubs have different group number limitations(sales booster of course). My Hub - [Hub (2G) Jeweller](https://ajax.systems/products/specs/hub/) - supports up to 9 groups as all Non-Plus models. If you want 25 Groups you have to buy Hub Plus/Hub 2 Plus. To set up Security Groups got to Control tab in APP -> Settings(cog) -> in Space settings select Groups -> + Add Group -> introduce Name and add devices in the Group. As I only have 9 group limit and 12+ devices I had configured one group to include MotionProtect and DoorProtect device from the same room/area.
+
 ![image](https://github.com/user-attachments/assets/a4ef4f86-ce33-4ff9-9e1e-41a08409e35b)
 
 - And finally - you should configure your AJAX Hub to send SIA Events to your HA instance. To do this go to Device tab in APP -> your Hub -> Settings(cog) -> Security companies -> CMS CONNECTION Monitoring station: 
