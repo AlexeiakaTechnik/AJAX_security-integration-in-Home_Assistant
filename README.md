@@ -63,12 +63,15 @@ No reverse engineering. No unreliable cloud hacks. Just clever wiring, good auto
 
 ## 🏗️ AJAX System Overview & Integration Limitations
 
-📸 *[Insert picture of AJAX Ecosystem protection]* 
 
 The AJAX system is built as a closed, certified Grade 2 security solution. It’s designed to be tamper-proof, interference-resistant, and independent from DIY environments — for good reason: it’s used in banks, businesses, and homes/locations that need _secured_ protection.
 
+<details>
+<summary>📸 Alarm Grades Picture (Click to Expand)</summary>
+
 ![image](https://github.com/user-attachments/assets/b9580717-a260-4d85-85b2-c5b069a0ae34)
 
+</details>
 
 Here’s what you need to understand before integrating:
 
