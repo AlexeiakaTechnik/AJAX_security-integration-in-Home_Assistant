@@ -197,12 +197,48 @@ This should be enough to get AJAX System ready for uasge with HA.
 
 In this section, we configure **Home Assistant** to:
 
-- Trigger relays for each AJAX mode
-- Use **Alarmo** to create virtual alarm zones
-- Sync the state of HA's Alarmo with AJAX and vice versa to reflect true Armed/Disarmed status
-- Send notifications and alerts
+- Use **SIA Alarm Systems** integration to add and configure AJAX Zones to Home Assistant
+- Use **Alarmo** to create virtual alarm zones, send notifications and alerts
+- Sync the state of HA's Alarmo with AJAX and vice versa to reflect true Armed/Disarmed/other statuses
+
+### 🔧 SIA Alarm Systems Configuration
+
+Install SIA Alarm Systems Official Inegration.
+
+[![Open this in Home Assistant](https://my.home-assistant.io/badges/integration.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=sia)
+
+![image](https://github.com/user-attachments/assets/5393f27d-6a29-4d84-93d8-42ba2bb70ebc)
+
+When adding config - set **Port** as you have set port in AJAX APP, **Protocol** to TCP(unless you set it otherwise), **Account ID** to **Object number** as set in AJAX APP Monitoring station, **Encryption key** if you have set it uo in AJAX APP, **Ping Interval** - same as in AJAX APP, **Number of zones** is supposed to be equal to **Group number** set up in AJAX APP or Group number + 1(for adding HUB as a zone itself) - try both or add ones if you do not see all zones set up.
+
+These are screenshots from my SIA Device List after I reamed them and added lables, etc.
+
+![image](https://github.com/user-attachments/assets/be81d636-2204-491b-be78-e3d7ecb0c249)
+
+FYI, there will be Smoke / Moisture devices & entities added. This is how integration gets info from AJAX Hub, but they are useless as far as I know.
+
+![image](https://github.com/user-attachments/assets/cd66d368-9632-4534-8e3c-d69244532428)
+
+
 
 ### 🔧 Alarmo Configuration
+
+First, lets install ALARMO Custom Inegration. For this we will need HACS Community Store. Here is the link in case you don't have it installed:
+
+[![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs.svg)](https://my.home-assistant.io/redirect/hacs_integration/)
+
+And ALARMO Integration:
+
+[![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fnielsfaber%2Falarmo)
+
+ALARMO Integration is unfortunatly only configured via UI, so the process is a bit tedious. Alarmo is intentionally designed to be UI-configured for most settings.
+There is a possible way to carefully edit .storage/alarmo JSON files manually, but I would not reccomend it as mistakes can lead to breaking your HA config. I have had a situation once when dirty edits in HA files led to me restoring HA Backup through it's console CLI.
+
+Basically in ALARMO you should configure Home 
+
+📄 Example YAMLs for automation, triggers, and states will be included here.
+
+### 🔧 Synchronization of Alarm states
 
 - Set up custom alarm modes (Arm, Disarm, Night, Panic)
 - Use input_booleans or binary_sensors to mirror AJAX state
