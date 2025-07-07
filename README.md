@@ -588,14 +588,176 @@ You’ll learn how to create an intuitive control interface using:
 - Using AJAX IR MotionProtect Devices as presence indicators
 - Bonus: adding other sensors and devices to UI Alarm panel
 
-First lets install custom UI cards from HACS community store:
+### First, lets install custom UI cards from HACS community store:
 
   * Mushroom cards - [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=piitaya&repository=lovelace-mushroom)
+
   * Custom Stack-in Card - [Stack-in-Card GitHub Repo](https://github.com/custom-cards/stack-in-card)  
-  ℹ️ To install, open HACS → Frontend → Menu → Custom Repositories → Paste the repo URL above OR use [this guide.](https://github.com/thomasloven/hass-config/wiki/Lovelace-Plugins)
+  ℹ️ To install, open HACS → Frontend → Menu → Custom Repositories → Paste the repo URL above. Or follow this guide: [Lovelace Plugins Manual Install](https://github.com/thomasloven/hass-config/wiki/Lovelace-Plugins)
+
+  * Lovelace Layout Card - [Stack-in-Card GitHub Repo](https://github.com/thomasloven/lovelace-layout-card?tab=readme-ov-file) 
+  ℹ️ To install, open HACS → Frontend → Menu → Custom Repositories → Paste the repo URL above. Or follow this guide: [Lovelace Plugins Manual Install](https://github.com/thomasloven/hass-config/wiki/Lovelace-Plugins)
+
+### Next, lets build the Alarm Control Panels for Level 0 / 1 and Master Alarm.
+
+In your Dashboard create a **new View(+)**. Set Layout to **Grid (layout-card)**, type View name, like **Home Security**, select Icon, and finally set Grid custom configuration in box below like in YAML example below, then save new View.
+
+<details>
+<summary>📝 YAML View Config - Lovelace Layout Card (Click to Expand)</summary>
+
+```yaml
+gridrows: auto
+grid-template-columns: 25% 25% 25% 25%
+grid-template-areas: |
+  "h1 h1 h1 h1"
+  "c1 c1 c1 c2"
+  "m1 m1 m1 m1"
+  "f1 f1 f1 f1"
+  "f1 f1 f1 f1"
+```
+
+</details>
+
+
+In this view tab create new card(any card) and replace it's YAML with this config:
+
+<details>
+<summary>📝 YAML Card Config - Musroom Alarm (Click to Expand)</summary>
+
+```yaml
+square: false
+type: grid
+cards:
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.home_master_alarm ##this is alarm entity created by ALARMO
+    states:
+      - armed_away
+    layout: vertical
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.1st_level
+    states: ##set states available for this alarm
+      - armed_away 
+      - armed_night
+    layout: vertical
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.0_level
+    states:
+      - armed_away
+      - armed_night
+    layout: vertical
+columns: 1
+view_layout:
+  grid-area: c1 ##this places card in grid coordinates established in View config
+
+```
+
+</details>
+
+
+Now, in my Home Assistant Alarm setup I have a script which starts stops "siren", this is usefull if you do not use any sort of siren from AJAX or other alarm system, but even if use one - its beneficial to set up additional alarm siren which would start going off from your smart speakers(Apple, Google, custom etc.) and send push/TTS notifications to mobile devices, so that evryone knew something went wrong in the building. I will not go into details on how to set it up but if you are interested - write me on email/create Github issue and I will share my setup with you!
+
+Lets add Siren button to this View, which would Enable Siren Manually or Disable it if Alarms were triggered:
+
+<details>
+<summary>📝 YAML Card Config - Siren Button (Click to Expand)</summary>
+
+```yaml
+square: false
+type: grid
+cards:
+  - show_name: true
+    show_icon: true
+    type: button
+    tap_action:
+      action: toggle
+    entity: input_boolean.house_alarm_siren_toggle ##this is helper entity I use in script
+    icon_height: 430px
+    name: Security Alarm Siren Toggle
+columns: 1
+view_layout:
+  grid-area: c2 ##card coordinates
+```
+
+</details>
+
+
+Here are some screenshots:
+
+<details>
+<summary>📸 LocalTuya UI Screenshot (Click to Expand)</summary>
+
+![image](https://github.com/user-attachments/assets/a57ede73-597d-4064-8447-c007ab2b530e)
+
+
+</details>
 
 
 
+At this point we have Alarm panels to control our areas and siren button. Important note - if you configure Alarm Code/users in ALARMO, Mushroom Alarm Card will Automatically add Code panel to the card. Be sure to check out my other article on how to create complex, practical Home Assistant UI dashboards - [Link](https://github.com/AlexeiakaTechnik/Practial-and-stylish-Home-Assistant-Dashboards-for-Tablets-and-Mobile-Phones).  
+
+
+### Now, lets add AJAX IR MotionProtect Devices as presence indicators for areas.
+
+
+
+
+<details>
+<summary>📝 YAML Config (Click to Expand)</summary>
+
+```yaml
+
+alias: Sync Alarmo Zones from AJAX SIA Alarm State
+description: >-
+  Synchronizes Alarmo zones (Level 0 and Level 1) with AJAX system state
+  received via SIA events. This is the *incoming* direction: AJAX state changes
+  → HA updates.
+triggers: ##We use SIA Integration Device state change as a trigger
+  - entity_id: alarm_control_panel.main_hall_pir_motion_sensor
+    trigger: state
+conditions: []
+actions:
+  - variables:
+      ajax_state: "{{ trigger.to_state.state }}"
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ ajax_state == 'armed_away' }}" ##lets check if our variable state changed to armed_away
+        sequence:
+          - action: alarm_control_panel.alarm_arm_away ##and arm the alarm
+            target:
+              entity_id: alarm_control_panel.0_level
+            data: {}
+          - delay:
+              seconds: 2  ##lets put a delay between area actions for Armed Away - this may improve stability when working with multiple areas
+          - action: alarm_control_panel.alarm_arm_away
+            target:
+              entity_id: alarm_control_panel.1st_level
+            data: {}
+      - conditions:
+          - condition: template
+            value_template: "{{ ajax_state == 'disarmed' }}"
+        sequence:
+          - target:
+              entity_id:
+                - alarm_control_panel.0_level
+                - alarm_control_panel.1st_level
+            action: alarm_control_panel.alarm_disarm
+            data: {}
+      - conditions:
+          - condition: template
+            value_template: "{{ ajax_state == 'armed_night' }}"
+        sequence:
+          - target:
+              entity_id:
+                - alarm_control_panel.0_level
+                - alarm_control_panel.1st_level
+            action: alarm_control_panel.alarm_arm_night
+            data: {}
+mode: queued
+
+```
+
+</details>
 ---
 
 ## 🎥 Live Demo – AJAX + Home Assistant in Action
