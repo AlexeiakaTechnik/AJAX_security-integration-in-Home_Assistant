@@ -909,68 +909,9 @@ And some screenshots:
 ![image](https://github.com/user-attachments/assets/f158e6a5-c304-45c4-a846-1df4554130e8)
 
 
-
 </details>
 
 
-
-<details>
-<summary>📝 YAML Config (Click to Expand)</summary>
-
-```yaml
-
-alias: Sync Alarmo Zones from AJAX SIA Alarm State
-description: >-
-  Synchronizes Alarmo zones (Level 0 and Level 1) with AJAX system state
-  received via SIA events. This is the *incoming* direction: AJAX state changes
-  → HA updates.
-triggers: ##We use SIA Integration Device state change as a trigger
-  - entity_id: alarm_control_panel.main_hall_pir_motion_sensor
-    trigger: state
-conditions: []
-actions:
-  - variables:
-      ajax_state: "{{ trigger.to_state.state }}"
-  - choose:
-      - conditions:
-          - condition: template
-            value_template: "{{ ajax_state == 'armed_away' }}" ##lets check if our variable state changed to armed_away
-        sequence:
-          - action: alarm_control_panel.alarm_arm_away ##and arm the alarm
-            target:
-              entity_id: alarm_control_panel.0_level
-            data: {}
-          - delay:
-              seconds: 2  ##lets put a delay between area actions for Armed Away - this may improve stability when working with multiple areas
-          - action: alarm_control_panel.alarm_arm_away
-            target:
-              entity_id: alarm_control_panel.1st_level
-            data: {}
-      - conditions:
-          - condition: template
-            value_template: "{{ ajax_state == 'disarmed' }}"
-        sequence:
-          - target:
-              entity_id:
-                - alarm_control_panel.0_level
-                - alarm_control_panel.1st_level
-            action: alarm_control_panel.alarm_disarm
-            data: {}
-      - conditions:
-          - condition: template
-            value_template: "{{ ajax_state == 'armed_night' }}"
-        sequence:
-          - target:
-              entity_id:
-                - alarm_control_panel.0_level
-                - alarm_control_panel.1st_level
-            action: alarm_control_panel.alarm_arm_night
-            data: {}
-mode: queued
-
-```
-
-</details>
 ---
 
 ## 🎥 Live Demo – AJAX + Home Assistant in Action
@@ -982,13 +923,19 @@ mode: queued
   - The AJAX mobile app
   - Physical AJAX key fob being activated by the relay
 - Visual demonstration of arming/disarming in real-time
-- Audio alerts or TTS notifications (if configured)
+- Audio alerts or TTS notifications
+
+**Here is the video - click on it to go watch it!**
+
+
+[![HA - AJAX Demonstration](https://img.youtube.com/vi/ZwWRNItUULs/0.jpg)](https://www.youtube.com/watch?v=ZwWRNItUULs)
+
 
 ---
 
 ## 🧠 Conclusions & Thoughts
 
-This integration brings AJAX — a closed, commercial security system — into the world of flexible, reactive automation without voiding its integrity.
+This integration brings AJAX — a closed, commercial security system — into the world of flexible, reactive automation without voiding its integrity. I am very satisfied with the end result. In future, with HA and AJAX updates and growth it is possible that some sort of turn-key integration will be provided, but most likely it will be one-way monitoring solution which would still require a way to control AJAX system from HA.
 
 ### ✅ Pros
 
@@ -1001,8 +948,11 @@ This integration brings AJAX — a closed, commercial security system — into t
 - No native state feedback without SIA setup  
 - Physical wiring is required (minor soldering needed)  
 - Limited to key fob functionality (no deep device-level control)
+- Some troubleshooting of Relay->Fob commands
 
-Still — for most smart home users — this method unlocks **90% of the value** you want from alarm control.
+Still — for most smart home users — this method unlocks **90% of the value** you want from alarm control. I hope this will help you in building your integrated smart home. This approach should be usable for other vendors also, because the same industry standards are applicable(Monitoring stations, SIA, key fobs). 
+
+If you have any ideas, suggestions, questions or even collaboration proposals - I would happily reply! Just send me an email or open an issue here on GitHub. 
 
 ---
 
