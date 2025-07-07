@@ -925,10 +925,10 @@ And some screenshots:
 - Visual demonstration of arming/disarming in real-time
 - Audio alerts or TTS notifications
 
-**Here is the video - click on it to go watch it!**
+**Here is the video - click on it to go watch it on YouTube!**
 
 
-[![HA - AJAX Demonstration](https://img.youtube.com/vi/ZwWRNItUULs/0.jpg)](https://www.youtube.com/watch?v=ZwWRNItUULs)
+[![HA - AJAX Demonstration](https://img.youtube.com/vi/Y7OIOnYIf7U/0.jpg)](https://www.youtube.com/watch?v=Y7OIOnYIf7U)
 
 
 ---
