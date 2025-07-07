@@ -591,16 +591,10 @@ You’ll learn how to create an intuitive control interface using:
 First lets install custom UI cards from HACS community store:
 
   * Mushroom cards - [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=piitaya&repository=lovelace-mushroom)
-  * Custom Stack-in Card - [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fcustom-cards%2Fstack-in-card)
+  * Custom Stack-in Card - [Stack-in-Card GitHub Repo](https://github.com/custom-cards/stack-in-card)  
+  ℹ️ To install, open HACS → Frontend → Menu → Custom Repositories → Paste the repo URL above OR use [this guide.](https://github.com/thomasloven/hass-config/wiki/Lovelace-Plugins)
 
 
-
-### 🔁 Sync Tips
-
-- Use very short SIA event-to-state automations (covered in the [SIA integration repo](https://github.com/AlexeiakaTechnik/Use-Ajax-Security-alarm-sensors-as-a-Automation-Triggers-in-Home-Assistant))
-- Show real-time triggers from **AJAX** and third-party sensors
-- Optional: overlay **Dahua SmartMotion** and door/window sensors into the same dashboard  
-  📎 [See my Dahua integration article](https://github.com/AlexeiakaTechnik/Integrating-Dahua-Cameras-CCTV-System-in-Home-Assistant)
 
 ---
 
