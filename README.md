@@ -580,13 +580,19 @@ I have found this Automations to be quite reliable and stable as will be shown i
 
 ---
 
-## 🖼️ Creating UI Cards & Status Sync
+## 🖼️ Creating UI Cards for Home Assistant 
 
 You’ll learn how to create an intuitive control interface using:
 
-- `custom:mushroom-alarm-control-panel-card`
-- Visual state mirroring (based on Alarmo + AJAX feedback)
-- Bonus: integrating **AJAX IR MotionProtect** devices as presence indicators
+- Using HA Mushroom UI Custom Cards to create Alarm panel
+- Using AJAX IR MotionProtect Devices as presence indicators
+- Bonus: adding other sensors and devices to UI Alarm panel
+
+First lets install custom UI cards from HACS community store:
+
+  * Mushroom cards - [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=piitaya&repository=lovelace-mushroom)
+  * Custom Stack-in Card - [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fcustom-cards%2Fstack-in-card)
+
 
 ### 🔁 Sync Tips
 
