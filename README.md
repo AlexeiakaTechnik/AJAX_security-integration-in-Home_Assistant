@@ -684,7 +684,7 @@ view_layout:
 Here are some screenshots:
 
 <details>
-<summary>📸 LocalTuya UI Screenshot (Click to Expand)</summary>
+<summary>📸 Alarm Panels UI Screenshot (Click to Expand)</summary>
 
 ![image](https://github.com/user-attachments/assets/a57ede73-597d-4064-8447-c007ab2b530e)
 
@@ -698,6 +698,219 @@ At this point we have Alarm panels to control our areas and siren button. Import
 
 ### Now, lets add AJAX IR MotionProtect Devices as presence indicators for areas.
 
+We have AJAX's MotionProtect and DoorProtect devices listed in SIA Itegration. Lets make use of them for monitoring motion presence in our building. 
+
+Here is the YAML config for my card:
+
+<details>
+<summary>📝 YAML View Config - Lovelace Layout Card (Click to Expand)</summary>
+
+```yaml
+square: false
+type: grid
+cards:
+  - type: custom:stack-in-card
+    title: Indoors (PIR Motion Sensor)
+    card_mod: ##Card Mod is extensively used in my HA setup - be sure to install it! It's a must have for any HA UI! This section sets parameters for card borders and style
+      style: |
+        ha-card {
+          border-style: solid;
+          border-width: 3px;
+          border-radius: 5px;
+          --ha-card-header-color: orange;
+          --ha-card-header-font-size: 30px;
+        }
+    mode: horizontal ##in custom:stack-in-card we add two vertical-stack cards to have two colums of areas
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_main_hall
+            name: Main Hall
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_0_level_main_hall
+            name: Hall L0
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_0_greenhouse
+            name: Greenhouse/Workshop
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_hallway_wooden_stairs
+            name: WoodenStairs
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_kitchen
+            name: Kitchen
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.2nd_level_attic_pir_motion_sensor_motion ##this is an example of non-AJAX PIR sensor used to provide motion events
+            name: Attic Entrance
+            fill_container: false
+            layout: vertical
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_bedroom_new
+            name: BedroomNew
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_bedroom_old
+            name: BedroomOld
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_entryway
+            name: Entryway
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_training_gym
+            name: Training Gym
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_garage_pir_motion_sens_motion
+            name: Garage
+            fill_container: false
+            layout: vertical
+columns: 1
+view_layout:
+  grid-area: m1
+
+```
+
+</details>
+
+
+And some screenshots:
+
+<details>
+<summary>📸 Motion Detection Areas UI Screenshot (Click to Expand)</summary>
+
+![image](https://github.com/user-attachments/assets/ac90bfd5-6bf0-40e1-ae99-8b5d80762175)
+
+
+</details>
+
+Such card would beutifully scale to Tablet UI Sizes. Screenshots above are taken from laptop screen.
+
+
+### Bonus part - lets add our Dahua Cameras CCTV SmartMotion sensors as Human/Vehicle presence detectors to UI Dashboard.
+
+For detailed Dahua integration article please visit my other repository - [Link](https://github.com/AlexeiakaTechnik/Integrating-Dahua-Cameras-CCTV-System-in-Home-Assistant). For purpose of this article we will just add their entities to the UI same way we added AJAX devices from SIA integration:
+
+<details>
+<summary>📝 YAML Card Config - Dahua SmartMotion (Click to Expand)</summary>
+
+```yaml
+square: false
+type: grid
+cards:
+  - type: custom:stack-in-card
+    title: Outdoors [Dahua Camera Smart Motion]
+    card_mod:
+      style: |
+        ha-card {
+          border-style: solid;
+          border-width: 3px;
+          border-radius: 5px;
+          --ha-card-header-color: orange;
+          --ha-card-header-font-size: 30px;
+        }
+    mode: horizontal
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_garage_cam_smart_motion_human
+            name: Garage Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:garage-open-variant
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_pool_cam_smart_motion_human
+            name: Pool Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:pool
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1_level_gate_doorbell_smart_motion_human
+            name: L1 Gate Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:gate
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_outside_doorbell_cam_smart_motion_human
+            name: L0 Gate Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:gate
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_main_entrance_cam_smart_motion_human
+            name: L0 Entrance
+            fill_container: false
+            layout: vertical
+            icon: mdi:door-closed
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1_level_cellar_ladder_cam_smart_motion_human
+            name: Attic Stairs Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:stairs
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_entrance_camera_smart_motion_human
+            name: L1 Entrance
+            fill_container: false
+            layout: vertical
+            icon: mdi:door-sliding
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_outside_entrance_cam_smart_motion_human
+            name: L1 Parking Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:parking
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_outside_entrance_cam_smart_motion_vehicle
+            name: L1 Parking Vehicle
+            fill_container: false
+            layout: vertical
+            icon: mdi:car-arrow-right
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.7l07162pagbd51c_smart_motion_human
+            name: Balc/Greenh Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:greenhouse
+columns: 1
+view_layout:
+  grid-area: f1
+
+
+```
+
+</details>
+
+
+And some screenshots:
+
+<details>
+<summary>📸 Dahua SmartMotion Areas UI Screenshot (Click to Expand)</summary>
+
+![image](https://github.com/user-attachments/assets/f158e6a5-c304-45c4-a846-1df4554130e8)
+
+
+
+</details>
 
 
 
