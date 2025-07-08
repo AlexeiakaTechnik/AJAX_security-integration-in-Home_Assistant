@@ -47,7 +47,7 @@ No reverse engineering. No unreliable cloud hacks. Just clever wiring, good auto
 
 > 📌 This is a real deployment. Every screenshot, wiring diagram, and automation here was used in an actual smart home with AJAX as the primary security system.
 
-<sub>[⬆️ Back to Table of Contents](#table-of-contents)</sub>
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🧰 Requirements
