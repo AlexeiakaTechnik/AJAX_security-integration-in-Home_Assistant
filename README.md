@@ -58,7 +58,7 @@ No reverse engineering. No unreliable cloud hacks. Just clever wiring, good auto
 - ✅ Basic soldering, wiring, and understanding of relays  
 - ✅ 4-channel Smart Relay with dry-contact capability (Wi-Fi, Zigbee — any brand supported in HA)
 
-
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🏗️ AJAX System Overview & Integration Limitations
@@ -91,7 +91,7 @@ We use this to our advantage:
 - In this guide, we simulate button presses using a relay directly wired to the [AJAX SpaceControl key fob](https://ajax.systems/products/ajaxspacecontrol/). This lets Home Assistant arm/disarm AJAX — safely and reliably.  
 - In the **other article**, I explain how we listen to SIA events from the AJAX Hub to react to real events and “hijack” them for Home Assistant automations. Be sure to [check it out](https://github.com/AlexeiakaTechnik/Use-Ajax-Security-alarm-sensors-as-a-Automation-Triggers-in-Home-Assistant)!
 
-
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🎮 Controlling AJAX with a SpaceControl Remote + Wi-Fi Relay
@@ -180,7 +180,7 @@ I have used this one from AliExpress:
 
 It's actually fairly easy to buy very cheap esp32 development board and configure/flash it with [ESPHome](https://esphome.io/index.html) or completely yourself from the ground up. Configure PINs to close the circuit momentarily and use it as your relay substitute with any additional functions you want, executed on the esp32 Chip itself if you want. Plus it's expandable! Be sure to check out my big article - [ESP32 DIY CO₂ Temperature & Humidity Sensors / Cameras for HA](https://github.com/AlexeiakaTechnik/Engineering-DIY-ESP32-Sensors-and-Cameras-for-Home-Assistant).
 
-
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## ⚙️ AJAX System - Devices, Groups and SIA Monitoring Station Setup
@@ -209,7 +209,7 @@ Important things to consider in the AJAX APP are:
 
 This should be enough to get AJAX System ready for uasge with HA.
 
-
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🏠 Integrating with Home Assistant & Alarmo
@@ -578,6 +578,7 @@ mode: single
 
 I have found this Automations to be quite reliable and stable as will be shown in **🎥 Live Demo** video.
 
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🖼️ Creating UI Cards for Home Assistant 
@@ -911,7 +912,7 @@ And some screenshots:
 
 </details>
 
-
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🎥 Live Demo – AJAX + Home Assistant in Action
@@ -954,12 +955,14 @@ Still — for most smart home users — this method unlocks **90% of the value**
 
 If you have any ideas, suggestions, questions or even collaboration proposals - I would happily reply! Just send me an email or open an issue here on GitHub. 
 
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🪪 License
 
 This project is licensed under the [MIT License](LICENSE).
 
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 👨‍💻 Author and Inspiration
@@ -967,6 +970,7 @@ This project is licensed under the [MIT License](LICENSE).
 Created by [Alexei](https://github.com/AlexeiakaTechnik) — field integrator, systems tinkerer, and smart home architect in the making.  
 Inspired by the amazing work of [Carlos Cordero](https://carloscordero.com/) → [YouTube](https://www.youtube.com/@unlocoysutecnologia) · [GitHub](https://github.com/ccorderor)
 
+<sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
 
 ## 🔗 Related Projects & Resources
