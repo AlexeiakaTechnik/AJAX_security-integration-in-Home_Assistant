@@ -1,0 +1,7 @@
+gridrows: auto
+grid-template-columns: 25% 25% 25% 25%
+grid-template-areas: |
+  "h1 h1 h1 h1"
+  "c1 c1 c1 c2"
+  "m1 m1 m1 m1"
+  "f1 f1 f1 f1"

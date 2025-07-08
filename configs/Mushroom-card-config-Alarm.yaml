@@ -1,0 +1,23 @@
+square: false
+type: grid
+cards:
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.home_master_alarm ##this is alarm entity created by ALARMO
+    states:
+      - armed_away
+    layout: vertical
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.1st_level
+    states: ##set states available for this alarm
+      - armed_away 
+      - armed_night
+    layout: vertical
+  - type: custom:mushroom-alarm-control-panel-card
+    entity: alarm_control_panel.0_level
+    states:
+      - armed_away
+      - armed_night
+    layout: vertical
+columns: 1
+view_layout:
+  grid-area: c1 ##this places card in grid coordinates established in View config

@@ -1,0 +1,78 @@
+square: false
+type: grid
+cards:
+  - type: custom:stack-in-card
+    title: Indoors (PIR Motion Sensor)
+    card_mod: ##Card Mod is extensively used in my HA setup - be sure to install it! It's a must have for any HA UI! This section sets parameters for card borders and style
+      style: |
+        ha-card {
+          border-style: solid;
+          border-width: 3px;
+          border-radius: 5px;
+          --ha-card-header-color: orange;
+          --ha-card-header-font-size: 30px;
+        }
+    mode: horizontal ##in custom:stack-in-card we add two vertical-stack cards to have two colums of areas
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_main_hall
+            name: Main Hall
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_0_level_main_hall
+            name: Hall L0
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_0_greenhouse
+            name: Greenhouse/Workshop
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_hallway_wooden_stairs
+            name: WoodenStairs
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_kitchen
+            name: Kitchen
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.2nd_level_attic_pir_motion_sensor_motion ##this is an example of non-AJAX PIR sensor used to provide motion events
+            name: Attic Entrance
+            fill_container: false
+            layout: vertical
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_bedroom_new
+            name: BedroomNew
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_bedroom_old
+            name: BedroomOld
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_entryway
+            name: Entryway
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.ajax_alarm_binary_level_1_training_gym
+            name: Training Gym
+            fill_container: false
+            layout: vertical
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_garage_pir_motion_sens_motion
+            name: Garage
+            fill_container: false
+            layout: vertical
+columns: 1
+view_layout:
+  grid-area: m1

@@ -1,0 +1,49 @@
+
+alias: Sync Alarmo Zones from AJAX SIA Alarm State
+description: >-
+  Synchronizes Alarmo zones (Level 0 and Level 1) with AJAX system state
+  received via SIA events. This is the *incoming* direction: AJAX state changes
+  → HA updates.
+triggers: ##We use SIA Integration Device state change as a trigger
+  - entity_id: alarm_control_panel.main_hall_pir_motion_sensor
+    trigger: state
+conditions: []
+actions:
+  - variables:
+      ajax_state: "{{ trigger.to_state.state }}"
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ ajax_state == 'armed_away' }}" ##check whether our variable state changed to ‘armed_away’
+        sequence:
+          - action: alarm_control_panel.alarm_arm_away ##and arm the alarm
+            target:
+              entity_id: alarm_control_panel.0_level
+            data: {}
+          - delay:
+              seconds: 2  ##lets put a delay between area actions for Armed Away - this may improve stability when working with multiple areas
+          - action: alarm_control_panel.alarm_arm_away
+            target:
+              entity_id: alarm_control_panel.1st_level
+            data: {}
+      - conditions:
+          - condition: template
+            value_template: "{{ ajax_state == 'disarmed' }}"
+        sequence:
+          - target:
+              entity_id:
+                - alarm_control_panel.0_level
+                - alarm_control_panel.1st_level
+            action: alarm_control_panel.alarm_disarm
+            data: {}
+      - conditions:
+          - condition: template
+            value_template: "{{ ajax_state == 'armed_night' }}"
+        sequence:
+          - target:
+              entity_id:
+                - alarm_control_panel.0_level
+                - alarm_control_panel.1st_level
+            action: alarm_control_panel.alarm_arm_night
+            data: {}
+mode: queued

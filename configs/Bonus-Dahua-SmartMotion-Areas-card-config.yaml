@@ -1,0 +1,84 @@
+square: false
+type: grid
+cards:
+  - type: custom:stack-in-card
+    title: Outdoors [Dahua Camera Smart Motion]
+    card_mod:
+      style: |
+        ha-card {
+          border-style: solid;
+          border-width: 3px;
+          border-radius: 5px;
+          --ha-card-header-color: orange;
+          --ha-card-header-font-size: 30px;
+        }
+    mode: horizontal
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_garage_cam_smart_motion_human
+            name: Garage Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:garage-open-variant
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_pool_cam_smart_motion_human
+            name: Pool Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:pool
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1_level_gate_doorbell_smart_motion_human
+            name: L1 Gate Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:gate
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_outside_doorbell_cam_smart_motion_human
+            name: L0 Gate Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:gate
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.0_level_main_entrance_cam_smart_motion_human
+            name: L0 Entrance
+            fill_container: false
+            layout: vertical
+            icon: mdi:door-closed
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1_level_cellar_ladder_cam_smart_motion_human
+            name: Attic Stairs Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:stairs
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_entrance_camera_smart_motion_human
+            name: L1 Entrance
+            fill_container: false
+            layout: vertical
+            icon: mdi:door-sliding
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_outside_entrance_cam_smart_motion_human
+            name: L1 Parking Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:parking
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.1st_level_outside_entrance_cam_smart_motion_vehicle
+            name: L1 Parking Vehicle
+            fill_container: false
+            layout: vertical
+            icon: mdi:car-arrow-right
+          - type: custom:mushroom-entity-card
+            entity: binary_sensor.7l07162pagbd51c_smart_motion_human
+            name: Balc/Greenh Human
+            fill_container: false
+            layout: vertical
+            icon: mdi:greenhouse
+columns: 1
+view_layout:
+  grid-area: f1
+

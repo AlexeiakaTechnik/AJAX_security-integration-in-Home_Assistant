@@ -1,0 +1,14 @@
+square: false
+type: grid
+cards:
+  - show_name: true
+    show_icon: true
+    type: button
+    tap_action:
+      action: toggle
+    entity: input_boolean.house_alarm_siren_toggle ##this is helper entity I use in script
+    icon_height: 430px
+    name: Security Alarm Siren Toggle
+columns: 1
+view_layout:
+  grid-area: c2 ##card coordinates
