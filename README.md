@@ -53,10 +53,10 @@ No reverse engineering. No unreliable cloud hacks. Just clever wiring, good auto
 ## 🧰 Requirements
 
 
-- ✅ Home Assistant running (local or remote)  
+- ✅ Home Assistant (local or remote)  
 - ✅ Configured AJAX security system with active SpaceControl fob and configured SIA output to a monitoring station (your HA server in this instance)  
 - ✅ Basic soldering, wiring, and understanding of relays  
-- ✅ 4-channel Smart Relay with dry-contact capability (Wi-Fi, Zigbee — any brand supported in HA)
+- ✅ 4-channel Smart Relay with dry-contact capability (Wi-Fi, Zigbee, or any Home Assistant-compatible brand)
 
 <sub>[⬆️ Back to Table of Contents](https://github.com/AlexeiakaTechnik/AJAX_security-integration-in-Home_Assistant/blob/main/README.md#-table-of-contents)</sub>
 ---
@@ -79,7 +79,7 @@ Here’s what you need to understand before integrating:
 
 - **No API** — There’s no REST, MQTT, or WebSocket interface to connect to  
 - **Certified Devices Only** — The system only communicates with registered AJAX devices (you can’t spoof or simulate one)  
-- **Cloud Locked** — The official app and ecosystem are locked out of any cloud-based integrations and only provide remote control, one-way (monitoring-only) integration with security providers (via SIA), and other misc. tools for internal AJAX purposes  
+- **Cloud Locked** — The official App and ecosystem are locked out of any cloud-based integrations and only provide remote control, one-way (monitoring-only) integration with security providers (via SIA), and other internal tools used by AJAX
 - **Tamper-Safe by Design** — Even opening a sensor triggers tamper alarms — not to mention messing with signals, circuits, data chains, etc.
 
 ### 🧩 But There Are Workarounds
@@ -127,7 +127,7 @@ Basically:
 - Each relay output is wired to one of the four buttons on the AJAX SpaceControl key fob.
 - When triggered via Home Assistant, the relay will short the contact, simulating a button press.
 
-## **The AJAX Space Control fob** plastic enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
+### **The AJAX Space Control fob** plastic enclosure is easily opened by inserting something like plastic knife/tool in beween front and back.
 
 <details>
 <summary>📸 Photos (Click to Expand)</summary>
@@ -137,7 +137,7 @@ Basically:
 </details>
 
 
-## There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
+### There are 4 buttons, 4 contact pairs, by shorting button and GRND we press the button. You can wire each button signal and any ground contact direcltly to Smart Relay contacts.
 
 <details>
 <summary>📸 Wiring Photo (Click to Expand)</summary>
@@ -146,7 +146,7 @@ Basically:
 
 </details>
 
-## **The Smart Relay with dry contacts** should have contacts designated for "Ithing mode" or "Momentary mode", "Dry Contact mode"
+### **The Smart Relay with dry contacts** should have contacts designated for "Ithing mode" or "Momentary mode", "Dry Contact mode"
 
 <details>
 <summary>📸 Relay Dry Contacts Image (Click to Expand)</summary>
@@ -156,7 +156,7 @@ Basically:
 </details>
 
 
-## Here is the clear wiring diagram:
+### Here is the clear wiring diagram:
 
 
 ![image](https://github.com/user-attachments/assets/fdd75ece-c6ee-4499-aa08-73fab17b553c)
@@ -168,10 +168,10 @@ I have used this one from AliExpress:
 
 📦 *[[Link]](https://sl.aliexpress.ru/p?key=QJ9S3Vp)*
 
-- But you can use others. Examples:
+But you can use others. Examples:
 
   - [SONOFF](https://sl.aliexpress.ru/p?key=Wc9S3gV) - ok brand, good value
-  - [eWelink](https://sl.aliexpress.ru/p?key=jb9S3nc) - same as Sonoff, Actually eWelink is official Sonoff APP, don't know why they are presented as separate brands, but its very usual for Chinese market
+  - [eWelink](https://sl.aliexpress.ru/p?key=jb9S3nc) - same as Sonoff, Actually eWelink is official Sonoff App, don't know why they are presented as separate brands, but its very usual for Chinese market
   - Combine 2 [Aqara](https://www.aqara.com/eu/product/dual-relay-module-t2) relays - if you have their hub, but HA interation may be not as staightforward(may require integration through Apple homekit)
   - Or something like [Shelly](https://sl.aliexpress.ru/p?key=DX9S3Tf) - it's an overkill IMO but if you can spend a lot - options like this are extra reliable professional equipment with great integration capabilities
 
@@ -185,17 +185,17 @@ It's actually fairly easy to buy very cheap esp32 development board and configur
 
 ## ⚙️ AJAX System - Devices, Groups and SIA Monitoring Station Setup
 
-Whether you have installed AJAX system yourself or used security company services - there are important moments in configuring a few things in the **AJAX APP** ([Android](https://play.google.com/store/apps/details?id=com.ajaxsystems&pcampaignid=web_share), [Apple](https://apps.apple.com/us/app/ajax-security-system/id1063166247)). Better yet - use AJAX PRO([Android](https://play.google.com/store/apps/details?id=com.ajaxsystems.pro&pcampaignid=web_share), [Apple](https://apps.apple.com/us/app/ajax-pro-tool-for-engineers/id1249276895)) and make yourself a Private Installer in your native User AJAX APP(Hub settings -> Installers/Companies -> Invite -> introduce email of account you have registered within AJAX PRO APP). Be sure to mention it to your installer or whoever provides warranty/support for AJAX system to avoid any issues.
+Whether you have installed AJAX system yourself or used security company services - there are important moments in configuring a few things in the **AJAX App** ([Android](https://play.google.com/store/apps/details?id=com.ajaxsystems&pcampaignid=web_share), [Apple](https://apps.apple.com/us/app/ajax-security-system/id1063166247)). Better yet - use AJAX PRO([Android](https://play.google.com/store/apps/details?id=com.ajaxsystems.pro&pcampaignid=web_share), [Apple](https://apps.apple.com/us/app/ajax-pro-tool-for-engineers/id1249276895)) and make yourself a Private Installer in your native User AJAX APP(Hub settings -> Installers/Companies -> Invite -> introduce email of account you have registered within AJAX PRO APP). Be sure to mention it to your installer or whoever provides warranty/support for AJAX system to avoid any issues.
 
-Important things to consider in the AJAX APP are:
+Important things to consider in the AJAX App are:
 
 - If you want to get readings of motion detection(or door/window triggers) in your configured areas _without_ setting alarm to Armed/Night mode, for example for quick dashboard glance in HA, as I have in my setup, you want to configure all your [MotionProtect](https://ajax.systems/products/motionprotect/) and [DoorProtect](https://ajax.systems/products/doorprotect/) devices to be **Always Active (24hrs)**. Do not worry - this will not drain your batterry considerably faster. I have used this setup for two years now, after several years in default mode and have not noticed any additional battery drain. To do this - go to device list, click on your devices one by one, enter device setting(cog) and set Always active slider to enabled.
 
-- [SIA Integration in Home Assistant](https://www.home-assistant.io/integrations/sia/) will recieve events from AJAX's configured **Groups of devices**, not from _each and every device separately_. Important note here - different generations of AJAX Hubs have different group number limitations(sales booster of course). My Hub - [Hub (2G) Jeweller](https://ajax.systems/products/specs/hub/) - supports up to 9 groups as all Non-Plus models. If you want 25 Groups you have to buy Hub Plus/Hub 2 Plus. To set up Security Groups got to Control tab in APP -> Settings(cog) -> in Space settings select Groups -> + Add Group -> introduce Name and add devices in the Group. As I only have 9 group limit and 12+ devices I had configured one group to include MotionProtect and DoorProtect device from the same room/area.
+- [SIA Integration in Home Assistant](https://www.home-assistant.io/integrations/sia/) will recieve events from AJAX's configured **Groups of devices**, not from _each and every device separately_. Important note here - different generations of AJAX Hubs have different group number limitations(sales booster of course). My Hub - [Hub (2G) Jeweller](https://ajax.systems/products/specs/hub/) - supports up to 9 groups as all Non-Plus models. If you want 25 Groups you have to buy Hub Plus/Hub 2 Plus. To set up Security Groups got to Control tab in App -> Settings(cog) -> in Space settings select Groups -> + Add Group -> introduce Name and add devices in the Group. My Hub supports only 9 groups, but I have more than 12 devices. So, I combined some sensors — for example, MotionProtect and DoorProtect devices from the same room — into a single Group.
 
 ![image](https://github.com/user-attachments/assets/a4ef4f86-ce33-4ff9-9e1e-41a08409e35b)
 
-- And finally - you should configure your AJAX Hub to send SIA Events to your HA instance. To do this go to Device tab in APP -> your Hub -> Settings(cog) -> Security companies -> CMS CONNECTION Monitoring station: 
+- And finally - you should configure your AJAX Hub to send SIA Events to your HA instance. To do this go to Device tab in App -> your Hub -> Settings(cog) -> Security companies -> CMS CONNECTION Monitoring station: 
   * Protocol - SIA DC-09 (SIA-DCS), 
   * ALARM CHANNEL - Ethernet(unless your server is remote and you have configured network to get data from your Hub's location via Cellular), 
   * PRIMARY IP ADDRESS - *Your HA IP* and *Use some free Port*(you also will use this port in HA SIA Integration when adding entry), 
@@ -222,18 +222,18 @@ In this section, we configure **Home Assistant** to:
 
 ### 🔧 SIA Alarm Systems Configuration
 
-Install SIA Alarm Systems Official Inegration.
+Install SIA Alarm Systems Official Integration.
 
 [![Open this in Home Assistant](https://my.home-assistant.io/badges/integration.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=sia)
 
 When adding config - set:
 
-  *  **Port** as you have set port in AJAX APP, 
+  *  **Port** as you have set port in AJAX App, 
   *  **Protocol** to TCP(unless you set it otherwise),
-  *  **Account ID** to **Object number** as set in AJAX APP Monitoring station,
-  *  **Encryption key** if you have set it uo in AJAX APP,
-  *  **Ping Interval** - same as in AJAX APP,
-  *  **Number of zones** is supposed to be equal to **Group number** set up in AJAX APP or Group number + 1(for adding HUB as a zone itself) - try both or add ones if you do not see all zones set up.
+  *  **Account ID** to **Object number** as set in AJAX App Monitoring station,
+  *  **Encryption key** if you have set it uo in AJAX App,
+  *  **Ping Interval** - same as in AJAX App,
+  *  **Number of zones** is supposed to be equal to **Group number** set up in AJAX App or Group number + 1(for adding HUB as a zone itself) - try both or add ones if you do not see all zones set up.
 
 <details>
 <summary>📸 Adding SIA Config Screenshot (Click to Expand)</summary>
@@ -267,7 +267,7 @@ FYI, there will be Smoke / Moisture devices & entities added. This is how integr
 
 ### 🔧 Alarmo Configuration
 
-First, lets install ALARMO Custom Inegration. For this we will need HACS Community Store. Here is the link in case you don't have it installed:
+First, lets install ALARMO Custom Integration. For this we will need HACS Community Store. Here is the link in case you don't have it installed:
 
 [![HACS](https://img.shields.io/badge/HACS-Install%20Guide-blue?logo=home-assistant&style=flat-square)](https://hacs.xyz)
 
@@ -275,7 +275,7 @@ And ALARMO Integration:
 
 [![Open this in Home Assistant](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fnielsfaber%2Falarmo)
 
-ALARMO Integration is unfortunatly only configured via UI, so the process is a bit tedious. Alarmo is intentionally designed to be UI-configured for most settings.
+ALARMO Integration is unfortunately only configured via UI, so the process is a bit tedious. Alarmo is intentionally designed to be UI-configured for most settings.
 There is a possible way to carefully edit .storage/alarmo JSON files manually, but I would not reccomend it as mistakes can lead to breaking your HA config. I have had a situation once when dirty edits in HA files led to me restoring full HA Backup through it's console CLI.
 
 Basically in ALARMO you should configure Areas or use default Alarmo area(these are separate virtual alarm sets, I have 2 Levels/Floors as two families live in the house, and one Area for enviromental Alarms - like fire/water/electrical/etc.), configure Modes you will use(I have Armed Away and Armed Night configured for Security Alarms and only Armed Away for Enviromental Alarms). 
@@ -340,7 +340,7 @@ Here is an example of ALARMO Action calling out shutting off house water valve i
 
 ### 🔧 Synchronization of Alarm states
 
-We will set up two Automations in HA to mirror AJAX(APP-Hub) state with Home Assistant ALARMO State. There are tricky moments here you should take into consideration. My current configuration is following:
+We will set up two Automations in HA to mirror AJAX(App-Hub) state with Home Assistant ALARMO State. There are tricky moments here you should take into consideration. My current configuration is following:
 
 - My **4 channel Relay** is of [TUYA/Smart Life](https://www.home-assistant.io/integrations/tuya) ecosystem. In HA it is inegrated through [LocalTuya](https://github.com/xZetsubou/hass-localtuya/).
 
@@ -360,7 +360,7 @@ We will set up two Automations in HA to mirror AJAX(APP-Hub) state with Home Ass
 </details>
 
 
-There is an issue, relay works great but AJAX fob doesnt react 100% of the time to switch/relay being shorted. So automation should include some sort of mechanism to verify state change via SIA Integration state feedback. We must make sure that AJAX Alarm has indeed switched to desirable state. Through testing I have found that changing relay pulse duration(button press time, i.e. seconds it stays on after switching back to off - configured in TUYA/Smart Life APP) **does not** impact the success of AJAX fob actually sending command to AJAX Hub. However, switching relay _a few times(2-3 times)_ in a span of _~10 seconds_ does the job - this will be included in Automation YAML config below.
+There is an issue, relay works great but AJAX fob doesnt react 100% of the time to switch/relay being shorted. So automation should include some sort of mechanism to verify state change via SIA Integration state feedback. We must make sure that AJAX Alarm has indeed switched to desirable state. Through testing I have found that changing relay pulse duration(button press time, i.e. seconds it stays on after switching back to off - configured in TUYA/Smart Life App) **does not** impact the success of AJAX fob actually sending command to AJAX Hub. However, switching relay _a few times(2-3 times)_ in a span of _~10 seconds_ does the job - this will be included in Automation YAML config below.
 
 *Your relay/esp32 device may be different in how it interacts with fob buttons - so you will have to test it yourself and adjust Automation config accordingly
 
@@ -375,7 +375,7 @@ There is an issue, relay works great but AJAX fob doesnt react 100% of the time 
   * Enviromental Alarm - alarm_control_panel.water_fire_power_hazard_alarms - controls only leak, fire/smoke Sensors, has **Armed away, Disarmed** and **Triggered** states - not applicable to this article but I wanted to mention it anyway
   * Master Alarm - _alarm_control_panel.halaim_home_master_alarm_ - Controls other **3 Areas simultaneously**, has **Armed away, Disarmed**, **Triggered**, **Arming, Disarming** states - may be needed for UI Dashboard if you want one switch to secure the whole building with one alarm panel
 
-**Important note** - from HA and Alarmo side of things you can control Floors/Levels or Dedicated Enviromental Alarm separately, but from AJAX APP/Hub/fob point of view you can only control the whole house. You can add second, third AJAX Fob with their own Relay to your setup or connect a few Fobs to one ESP32 Board if you want multiple areas controlled separately. I have checked AJAX APP and you can attach all/different groups to a single Space Control fob.
+**Important note** - from HA and Alarmo side of things you can control Floors/Levels or Dedicated Enviromental Alarm separately, but from AJAX App/Hub/fob point of view you can only control the whole house. You can add second, third AJAX Fob with their own Relay to your setup or connect a few Fobs to one ESP32 Board if you want multiple areas controlled separately. I have checked AJAX App and you can attach all/different groups to a single Space Control fob.
 
 **To summarize**, our Automations for this example of setup should:
 
@@ -411,7 +411,7 @@ actions:
   - choose:
       - conditions:
           - condition: template
-            value_template: "{{ ajax_state == 'armed_away' }}" ##lets check if our variable state changed to armed_away
+            value_template: "{{ ajax_state == 'armed_away' }}" ##check whether our variable state changed to ‘armed_away’
         sequence:
           - action: alarm_control_panel.alarm_arm_away ##and arm the alarm
             target:
@@ -482,14 +482,14 @@ actions:
             value_template: "{{ target_state == 'armed_away' }}"
         sequence:
           - repeat:
-              count: 3 ##lets repeat sequence 3 times to make sure AJAX Fob noticed button push and sent command to Hub
+              count: 3 ##repeat sequence 3 times to make sure AJAX Fob noticed button push and sent command to Hub
               sequence:
                 - target:
                     entity_id: switch.ajax_space_control_button_relay_switch_2
                   action: switch.turn_on
                   data: {}
                 - delay:
-                    seconds: 2  ##we already have Momentary/Itching mode Pulse duration configured in TUYA APP but lets add 2 second delayed Turn Off action anyway
+                    seconds: 2  ##we already have Momentary/Itching mode Pulse duration configured in TUYA App but lets add 2 second delayed Turn Off action anyway
                 - target:
                     entity_id: switch.ajax_space_control_button_relay_switch_2
                   action: switch.turn_off
@@ -801,7 +801,7 @@ And some screenshots:
 
 </details>
 
-Such card would beutifully scale to Tablet UI Sizes. Screenshots above are taken from laptop screen.
+This card scales beautifully on tablet screens. Screenshots above are taken from laptop screen.
 
 
 ### Bonus part - lets add our Dahua Cameras CCTV SmartMotion sensors as Human/Vehicle presence detectors to UI Dashboard.
@@ -919,12 +919,13 @@ And some screenshots:
 
 🎬 This section will include:
 
-- A **side-by-side video** showing:
+  - A **side-by-side video** showing:
+  - Brief overwiew of Hardware setup
   - Home Assistant dashboard on a tablet
-  - The AJAX mobile app
+  - The AJAX mobile App
   - Physical AJAX key fob being activated by the relay
-- Visual demonstration of arming/disarming in real-time
-- Audio alerts or TTS notifications
+  - Visual demonstration of arming/disarming in real-time
+  - Audio alerts or TTS notifications
 
 **Here is the video - click on it to go watch it on YouTube!**
 
@@ -949,9 +950,9 @@ This integration brings AJAX — a closed, commercial security system — into t
 - No native state feedback without SIA setup  
 - Physical wiring is required (minor soldering needed)  
 - Limited to key fob functionality (no deep device-level control)
-- Some troubleshooting of Relay->Fob commands
+- Some troubleshooting may be required for Relay-to-Fob commands
 
-Still — for most smart home users — this method unlocks **90% of the value** you want from alarm control. I hope this will help you in building your integrated smart home. This approach should be usable for other vendors also, because the same industry standards are applicable(Monitoring stations, SIA, key fobs). 
+For most smart home users, this method unlocks about 90% of the desired functionality while maintaining security and reliability. I hope this will help you in building your integrated smart home. This approach should be usable for other vendors also, because the same industry standards are applicable(Monitoring stations, SIA, key fobs). 
 
 If you have any ideas, suggestions, questions or even collaboration proposals - I would happily reply! Just send me an email or open an issue here on GitHub. 
 
